@@ -27,7 +27,7 @@
             .text("Cholera Map")
         d3.json("media/streets.json", function (array) {
             for (i = 0; i < array.length; i++) {
-                console.log(typeof (array.size));
+                //console.log(typeof (array.size));
                 var lineData = array[i];
                 var lineFunction = d3.svg.line().x(function (d) {
                     return d.x *
