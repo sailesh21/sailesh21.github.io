@@ -26,7 +26,8 @@
             .attr("stroke", "blue")
             .text("Cholera Map")
         d3.json("media/streets.json", function (array) {
-            for (i = 0; i < array.size; i++) {
+            for (i = 0; i < 528; i++) {
+                console.log(typeof (array.size));
                 var lineData = array[i];
                 var lineFunction = d3.svg.line().x(function (d) {
                     return d.x *
@@ -35,7 +36,8 @@
                     return (height - d.y * multiplier);
                 }).interpolate("linear");
                 var
-                    lineGraph = svgContainer.append("path").attr("d", lineFunction(lineData)).attr("stroke",
+                    lineGraph = svgContainer.append("path").attr("d", lineFunction(lineData)).attr(
+                        "stroke",
                         "steelblue")
                     .attr("stroke-width", 2).attr("fill", "none");
             };
@@ -50,7 +52,8 @@
                 var myimage = images
                     .attr('xlink:href', "media/handpump.png")
                     .attr("x", function (d) {
-                        return d.x * multiplier - (imgwidth / 2); //for aligning at the exact point
+                        return d.x * multiplier - (imgwidth /
+                            2); //for aligning at the exact point
                     })
                     .attr("y", function (d) {
                         return height - d.y * multiplier - (imgheight / 2);
