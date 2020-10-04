@@ -82,7 +82,7 @@
         function getDeaths(gender) {
             d3.csv("media/deaths_age_Sex.csv", function (deathsdata) {
                 var temper = deathsdata;
-
+                console.log(deathsdata);
                 var div1 = d3.select("body").append("div")
                     .attr("class", "tooltip3")
                     .style("opacity", 0);
