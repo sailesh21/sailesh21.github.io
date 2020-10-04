@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>D3 Project 1</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <link href="styling.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <h1>Zing Zing its amazing</h1>
+    <script>
+        var height = width = 600;
+        var multiplier = 29;
+        var imgheight = imgwidth = 25;
+        var div1 = d3.select("body").append("div")
+            .style("opacity", 0);
+        var svgContainer = d3.select("body").append("svg")
+            .attr("id", "map")
+            .attr("width", width)
+            .attr("height", height)
+            .attr('transform', 'translate(-40,0)');
+        d3.select("#map").append("text").attr("x", 300).attr("y", 40)
+            .style("text-anchor", "middle")
+            .attr("stroke", "blue")
+            .text("Cholera Map")
+        d3.json("media/streets.json", function (array) {
+            for (i = 0; i < array.length; i++) {
+                var lineData = array[i];
+                var lineFunction = d3.svg.line().x(function (d) {
+                    return d.x *
+                        multiplier;
+                }).y(function (d) {
+                    return (height - d.y * multiplier);
+                }).interpolate("linear");
+                var
+                    lineGraph = svgContainer.append("path").attr("d", lineFunction(lineData)).attr("stroke",
+                        "steelblue")
+                    .attr("stroke-width", 2).attr("fill", "none");
+            };
+            d3.csv("media/pumps.csv", function (data) {
+                var div1 = d3.select("body").append("div")
+                    .attr("class", "tooltip2")
+                    .style("opacity", 0);
+                var images = svgContainer.selectAll("image")
+                    .data(data)
+                    .enter()
+                    .append("image");
+                var myimage = images
+                    .attr('xlink:href', "media/handpump.png")
+                    .attr("x", function (d) {
+                        return d.x * multiplier - (imgwidth / 2); //for aligning at the exact point
+                    })
+                    .attr("y", function (d) {
+                        return height - d.y * multiplier - (imgheight / 2);
+                    })
+                    .attr('width', imgwidth)
+                    .attr('height', imgheight)
+                    .on("mouseover", function (d, i) {
+                        div1.transition()
+                            .duration(1)
+                            .style("opacity", 5);
+                        div1.html("<b>Pump</b>")
+                            .style("left", (d3.event.pageX + 10) + "px")
+                            .style("top", (d3.event.pageY - 15) + "px");
+                    })
+                    .on("mouseout", function (d) {
+                        div1.transition()
+                            .duration(0)
+                            .style("opacity", 0);
+                    })
+            });
+            // getting all the deaths data
+
+
+        });
+
+        function getDeaths(gender) {
+            d3.csv("media/deaths_age_Sex.csv", function (deathsdata) {
+                var temper = deathsdata;
+
+                var div1 = d3.select("body").append("div")
+                    .attr("class", "tooltip3")
+                    .style("opacity", 0);
+                var circleDeaths = svgContainer.selectAll("circle")
+                    .data(deathsdata)
+                    .enter()
+                    .append("circle")
+                    .attr("id", "points")
+                    .attr("cx", function (d) {
+                        return d.x * multiplier;
+                    })
+                    .attr("cy", function (d) {
+                        return height - d.y * multiplier;
+                    })
+                    .attr('r', 2)
+                    .attr('fill', function (d) {
+                        if (d.gender == 0) {
+                            return "red";
+                        } else {
+                            return "blue";
+                        }
+                    })
+                    .on("mouseover", function (d, i) {
+                        div1.transition()
+                            .duration(1)
+                            .style("opacity", 5);
+                        if (d.gender == 1) {
+                            var sex = "Female";
+                        } else {
+                            var sex = "Male";
+                        }
+                        var ageGroup = [];
+                        for (var i = 0; i < 6; i++) {
+                            var lowerBound = 10 * (i) + 1;
+                            var upperBound = 10 + lowerBound;
+                            ageGroup[i] = lowerBound + "-" + upperBound;
+                        }
+                        // console.log(ageGroup[+d.age]);
+                        div1.html("<b>Gender: " + sex + "</br>Age Group: " + ageGroup[+d
+                                .age])
+                            .style("left", (d3.event.pageX + 10) + "px")
+                            .style("top", (d3.event.pageY - 15) + "px");
+                    })
+                    .on("mouseout", function (d) {
+                        div1.transition()
+                            .duration(0)
+                            .style("opacity", 0);
+                    })
+            })
+        }
+        //calling deaths function
+        getDeaths(1);
+        // function loadDeaths
+    </script>
+    <script src="linechart.js"></script>
+</body>
+
+</html>

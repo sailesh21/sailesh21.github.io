@@ -1,0 +1,37 @@
+div.tooltip3 {
+    position: fixed;
+    text-align: center;
+    width: 125px;
+    height: 28px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 1px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+div.tooltip2 {
+    position: absolute;
+    text-align: center;
+    width: 50px;
+    height: 13px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    . shape-rendering: crispEdges;
+}
+
+svg {
+    background-color: rgb(196, 189, 189);
+}
