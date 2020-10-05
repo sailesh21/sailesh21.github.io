@@ -26,8 +26,7 @@
             .attr("stroke", "blue")
             .text("Cholera Map")
         d3.json("media/streets.json", function (array) {
-            for (i = 0; i < array.length; i++) {
-                //console.log(typeof (array.size));
+            for (i = 0; i < 528; i++) {
                 var lineData = array[i];
                 var lineFunction = d3.svg.line().x(function (d) {
                     return d.x *
@@ -81,8 +80,7 @@
 
         function getDeaths(gender) {
             d3.csv("media/deaths_age_sex.csv", function (deathsdata) {
-                var temper = deathsdata;
-                //console.log(deathsdata);
+
                 var div1 = d3.select("body").append("div")
                     .attr("class", "tooltip3")
                     .style("opacity", 0);
@@ -135,7 +133,63 @@
         }
         //calling deaths function
         getDeaths(1);
-        // function loadDeaths
+        //loadDeathsDay("28-Aug");
+
+        function loadDeathsDay(date) {
+            d3.csv("media/deathdays.csv", function (deathdays) {
+                var before = 0;
+                var present = 0;
+                for (i = 0; i < deathdays.length; i++) {
+                    before = before + parseFloat(deathdays[i].deaths)
+
+                    if (deathdays[i].date == date) {
+                        // console.log(before - deathdays[i].deaths);
+                        before = before - parseFloat(deathdays[i].deaths)
+                        present = parseFloat(deathdays[i].deaths);
+                        break;
+                    }
+                }
+                d3.csv("media/deaths_age_sex.csv", function (deathdays) {
+                    deathdays.forEach(function (d, i) {
+
+                        //console.log(d.x, i);
+                        //console.log(before);
+                        var circleDeaths = svgContainer.selectAll("circle")
+                            .data(deathdays)
+                            .enter()
+                            .append("circle")
+                            .attr("id", "points")
+                            .attr("cx", function (d, i) {
+                                // if (i > before && i < present + before + 1) { //this line is for getting particular date deaths
+
+                                if (i < present + before + 1) {
+                                    console.log(before);
+                                    return d.x * multiplier;
+                                }
+                            })
+                            .attr("cy", function (d, i) {
+                                // if (i > before && i < present + before + 1) { //this line is for getting particular date deaths
+                                if (i < present + before + 1) {
+                                    return height - d.y * multiplier;
+                                }
+                            })
+                            .attr('r', 2)
+                            .attr('fill', function (d) {
+                                if (d.gender == 0) {
+                                    return "red";
+                                } else {
+                                    return "blue";
+                                }
+                            })
+
+
+                    })
+                })
+
+
+
+            })
+        }
     </script>
     <script src="linechart.js"></script>
 </body>
