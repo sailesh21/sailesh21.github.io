@@ -97,12 +97,12 @@ function drawLineChart(data) {
         .on("click", function (d) {
             d3.selectAll("#points").remove();
             div1.transition()
-                .duration(10)
+                .duration(5)
                 .style("opacity", 5);
             div1.html("<b>Dated :" + d.orig + "</br>Deaths : " + d.deaths)
                 .style("left", (d3.event.pageX + 10) + "px")
                 .style("top", (d3.event.pageY - 15) + "px");
-
+            loadDeathsDay(d.orig);
         })
         .on("mouseover", function (d) {
             d3.selectAll("#points").remove();
@@ -113,10 +113,12 @@ function drawLineChart(data) {
                 .style("left", (d3.event.pageX + 10) + "px")
                 .style("top", (d3.event.pageY - 15) + "px");
 
+            loadDeathsDay(d.orig);
         })
         .on("mouseout", function (d) {
+            d3.selectAll("#points").remove();
             div1.transition()
-                .duration(0)
+                .duration(500)
                 .style("opacity", 0);
             getDeaths(1);
         });
