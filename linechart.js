@@ -28,10 +28,10 @@ function drawLineChart(data) {
 
 
     var g = d3.select('#chart').select('g');
-    d3.select("#chart").append("text").attr("x", 300).attr("y", 40)
+    d3.select("#chart").append("text").attr("x", 300).attr("y", 15)
         .style("text-anchor", "middle")
-        .attr("stroke", "blue")
-        .text("Time Series Line Graph")
+        .attr("stroke", "black")
+        .text("Date Versus No. of Deaths")
     x.domain(d3.extent(data, function (d) {
         return d.date;
     }));
