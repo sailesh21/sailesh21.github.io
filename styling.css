@@ -2,10 +2,53 @@ div.tooltip3 {
     position: fixed;
     text-align: center;
     width: 125px;
-    height: 28px;
+    height: 30px;
     padding: 2px;
     font: 12px sans-serif;
-    background: lightsteelblue;
+    background: rgb(201, 172, 223);
+    border: 1px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+div.tooltip1 {
+    position: fixed;
+    text-align: center;
+    width: 65px;
+    height: 19px;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: rgb(201, 172, 223);
+    border: 1px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+div.tooltip4 {
+    position: fixed;
+    text-align: center;
+    width: 150px;
+    height: 19px;
+    padding: 2px;
+    font: 12px sans-serif;
+    /* background: lightsteelblue; */
+    background: rgb(201, 172, 223);
+
+    border: 1px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+div.tooltip5 {
+    position: fixed;
+    text-align: center;
+    width: 100px;
+    height: 32px;
+    padding: 2px;
+    font: 12px sans-serif;
+    /* background: lightsteelblue; */
+    background: rgb(201, 172, 223);
+
     border: 1px;
     border-radius: 8px;
     pointer-events: none;
@@ -15,10 +58,10 @@ div.tooltip2 {
     position: absolute;
     text-align: center;
     width: 50px;
-    height: 13px;
+    height: 17px;
     padding: 2px;
     font: 12px sans-serif;
-    background: lightsteelblue;
+    background: rgb(201, 172, 223);
     border: 0px;
     border-radius: 8px;
     pointer-events: none;
@@ -29,9 +72,18 @@ div.tooltip2 {
     fill: none;
     stroke: grey;
     stroke-width: 1;
-    . shape-rendering: crispEdges;
+    shape-rendering: crispEdges;
 }
 
-/* svg {
-    background-color: rgb(196, 189, 189);
+body {
+    background-color: rgb(3, 3, 1)
+        /* #cafafe; */
+
+        /* background-color: #00678a; */
+}
+
+
+/* 
+svg {
+    background-color: rgb(228, 228, 107)
 } */

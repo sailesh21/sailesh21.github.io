@@ -12,18 +12,19 @@ function drawLineChart(data) {
     // console.log(maxValue);
 
     var x = d3.time.scale()
-        .range([0, CHART_WIDTH]);
+        .range([0, CHART_WIDTH - 1]);
 
     var y = d3.scale.linear()
         .range([CHART_HEIGHT, 0]);
 
 
-    var svgContainer_chart = d3.select("body").append("svg")
+    var svgContainer_chart = d3.select("#right").append("svg")
         .attr("id", "chart")
-        .attr("width", 600)
-        .attr("height", 600)
+        .attr("width", 500)
+        .attr("height", 500)
+        .attr('transform', 'translate(10,20)')
         .append("g")
-        .attr('transform', 'translate(100,150)');
+        .attr('transform', 'translate(60 ,30)');
 
 
     var g = d3.select('#chart').select('g');
@@ -75,7 +76,7 @@ function drawLineChart(data) {
 
     g.append('path')
         .style('fill', 'none')
-        .style('stroke', 'steelblue')
+        .style('stroke', '#76D7C4')
         .style('stroke-width', '2px')
         .attr('d', pathGenerator(data));
     var div1 = d3.select("body").append("div")
@@ -86,7 +87,7 @@ function drawLineChart(data) {
         .enter()
         .append("circle")
         //circle radius is increased
-        .attr("r", 2.5)
+        .attr("r", 3.5)
         .attr("cx", function (d) {
             return x(d.date);
         })
@@ -99,6 +100,10 @@ function drawLineChart(data) {
             div1.transition()
                 .duration(5)
                 .style("opacity", 5);
+            d3.select(this)
+                .transition()
+                .attr("r", "6");
+            console.log(data[1].deaths);
             div1.html("<b>Dated :" + d.orig + "</br>Deaths : " + d.deaths)
                 .style("left", (d3.event.pageX + 10) + "px")
                 .style("top", (d3.event.pageY - 15) + "px");
@@ -109,6 +114,9 @@ function drawLineChart(data) {
             div1.transition()
                 .duration(100)
                 .style("opacity", 5);
+            d3.select(this)
+                .transition()
+                .attr("r", "6");
             div1.html("<b>Dated :" + d.orig + "</br>Deaths : " + d.deaths)
                 .style("left", (d3.event.pageX + 10) + "px")
                 .style("top", (d3.event.pageY - 15) + "px");
@@ -116,11 +124,18 @@ function drawLineChart(data) {
             loadDeathsDay(d.orig);
         })
         .on("mouseout", function (d) {
-            d3.selectAll("#points").remove();
             div1.transition()
                 .duration(500)
                 .style("opacity", 0);
-            getDeaths(1);
+            d3.select(this)
+                .transition()
+                .attr("r", "3.5");
+            // setTimeout(() => {
+            //     d3.selectAll("#points").remove();
+
+            //     getDeathsGender();
+            // }, 500);
+
         });
 
 
