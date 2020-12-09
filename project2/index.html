@@ -15,10 +15,7 @@
 
     <div id="nav">
         <h1>USA Exports and Imports with US Census Foreign Trade Data</h1>
-        <div id="nav-last">
-            <a href="documentation.pdf" target="_blank">Documentation</a>
-            <a href="#" target="_blank">Video</a>
-        </div>
+
     </div>
     <div id="top-row">
         <svg width="1000" height="530" id="usmap"></svg>
@@ -57,8 +54,14 @@
                 <label for="2018">2018</label>
             </p>
         </div>
-        <!-- <div class="legend">
-        </div> -->
+
+        <div id="nav-last">
+            <br><br><br>
+            <a href="documentation.pdf" target="_blank" class="button1"
+                style="background-color:rgb(179, 88, 6)">Documentation</a>
+            <br>
+            <a href="#" target="_blank" class="button1" style="background-color:rgb(179, 88, 6)">Video</a>
+        </div>
     </div>
 
     <div id="bottom-row">
@@ -166,10 +169,12 @@
                             setActiveState(selectedState);
                         })
                         .on("mouseover", function (d) {
+
                             tooltip.transition().duration(200).style("opacity", 1);
                             tooltip.html(d.properties.name).style("left", (d3.event.pageX +
                                     20) + "px")
                                 .style("top", (d3.event.pageY - 50) + "px");
+
                         }).on("mouseout", function (d) {
                             tooltip.transition().duration(500).style("opacity", 0);
                         })
@@ -859,7 +864,7 @@
             $(".state").each(function () {
                 if ($(this).hasClass(state)) {
                     $(this).css({
-                        "stroke-width": "4px"
+                        "stroke-width": "4px",
                     });
                 } else {
                     $(this).css({
