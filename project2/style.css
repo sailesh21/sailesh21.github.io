@@ -6,7 +6,7 @@ body {
 div.tooltip {
     position: absolute;
     text-align: left;
-    width: 100px;
+    width: 104px;
     padding: 8px;
     font: 12px sans-serif;
     background: #FFF;
@@ -184,9 +184,9 @@ rect.disabled {
     font-weight: bold;
 }
 
-path:hover {
+/* path:hover {
     fill: #a1d99b;
-}
+} */
 
 .footer {
     padding-top: 50px;
@@ -240,7 +240,7 @@ path:hover {
     border-bottom: 2px solid #000;
 }
 
-a.button1 {
+/* a.button1 {
     display: inline-block;
     padding: 0.3em 1.2em;
     margin: 0 0.1em 0.1em 0;
@@ -267,4 +267,4 @@ a.button1:hover {
         display: block;
         margin: 0.2em auto;
     }
-}
+} */
