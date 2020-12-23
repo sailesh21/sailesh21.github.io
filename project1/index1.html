@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+    <style>
+        #mapid {
+            height: 400px;
+            width: 600px;
+        }
+    </style>
+
+</head>
+
+
+<body>
+    <h3>Hello There</h3>
+    <div id='mapid'>
+
+    </div>
+    <script>
+        var mymap = L.map('mapid').setView([16.01906531106559, 80.82983314990997
+        ], 18);
+        var geojsonFeature = {
+            "type": "FeatureCollection",
+            "features": [
+                {
+                    "type": "Feature",
+                    "properties": {},
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [
+                            [
+                                [
+                                    80.82983314990997,
+                                    16.01906531106559
+                                ],
+                                [
+                                    80.82960247993469,
+                                    16.018869378513198
+                                ],
+                                [
+                                    80.82955420017242,
+                                    16.018596103842558
+                                ],
+                                [
+                                    80.83000481128693,
+                                    16.018472356698812
+                                ],
+                                [
+                                    80.83012282848358,
+                                    16.018699226403744
+                                ],
+                                [
+                                    80.83002626895903,
+                                    16.018972500933167
+                                ],
+                                [
+                                    80.82983314990997,
+                                    16.01906531106559
+                                ]
+                            ]
+                        ]
+                    }
+                }
+            ]
+        };
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2F2ZW11bGEiLCJhIjoiY2thcHhrNXU1MDMzbTJ5bWVwOXluM2JhMCJ9.5epSCICCYwl1aaVjkTTevg', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+        }).addTo(mymap);
+        L.geoJSON(geojsonFeature).addTo(mymap);
+        L.marker([16.01906531106559, 80.82983314990997,
+        ]).addTo(mymap);
+
+    </script>
+</body>
+
+</html>

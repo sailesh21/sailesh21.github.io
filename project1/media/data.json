@@ -1,0 +1,73 @@
+[{
+        "category": "0 - 10",
+        "values": [{
+                "value": 65,
+                "sex": "Male"
+            },
+            {
+                "value": 78,
+                "sex": "Female"
+            }
+        ]
+    },
+    {
+        "category": "11 - 20",
+        "values": [{
+                "value": 29,
+                "sex": "Male"
+            },
+            {
+                "value": 19,
+                "sex": "Female"
+            }
+        ]
+    },
+    {
+        "category": "21 - 40",
+        "values": [{
+                "value": 34,
+                "sex": "Male"
+            },
+            {
+                "value": 24,
+                "sex": "Female"
+            }
+        ]
+    },
+    {
+        "category": "41 - 60",
+        "values": [{
+                "value": 22,
+                "sex": "Male"
+            },
+            {
+                "value": 35,
+                "sex": "Female"
+            }
+        ]
+    },
+    {
+        "category": "61 - 80",
+        "values": [{
+                "value": 46,
+                "sex": "Male"
+            },
+            {
+                "value": 45,
+                "sex": "Female"
+            }
+        ]
+    },
+    {
+        "category": "   > 80",
+        "values": [{
+                "value": 88,
+                "sex": "Male"
+            },
+            {
+                "value": 86,
+                "sex": "Female"
+            }
+        ]
+    }
+]

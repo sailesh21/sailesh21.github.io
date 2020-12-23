@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>D3 Project 1</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <link href="styling.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="icon" type="image/jpg" href="media/icon.jpg">
+</head>
+
+<body style="background-color: rgb(250, 250, 246)">
+    <div class=" w3-bar w3-border w3-teal w3-center">
+        <a href="design_document.html" style="width:33.33%" class="w3-bar-item w3-button w3-mobile w3-padding-18"> About
+        </a>
+        <a href="#" style="width:33.33%" class="w3-bar-item w3-button w3-mobile w3-padding-14">John Snow's Cholera
+            Map</a>
+        <a href="presentation.html" style="width:33.33%" class="w3-bar-item w3-button w3-mobile w3-padding-18">How to
+            Use</a>
+    </div>
+    <div id='buttonsDiv' style="margin-left:38%;margin-top: 0.5%">
+        <input name="GenderBasedButton" type="button" value="Gender" class="w3-button w3-tiny  w3-teal w3-round-xlarge"
+            onclick="getDeathsGender()" />
+        <input name="AgeBasedButton" type="button" value="Age" class="w3-button w3-tiny w3-round-xlarge w3-teal"
+            onclick="getDeathsAge()" />
+        <input name="AgeBasedButton" type="button" value="Gender & Age"
+            class="w3-button w3-tiny w3-round-xlarge w3-teal" onclick="getDeathsGenderAge()" />
+        <input name="Plain" type="button" value="Plain Map" class="w3-button w3-tiny w3-round-xlarge w3-teal"
+            onclick="deleteall()" />
+    </div>
+    <div>
+        <div class="w3-display-left" id="left"></div>
+        <div class="w3-display-middle" id="middle"></div>
+        <div class="w3-display-right" id="right"></div>
+    </div>
+    <!-- <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-5" id="left">
+            </div>
+            <div class="col-2" id="middle">
+            </div>
+            <div class="col-5" id="right">
+            </div>
+        </div>
+    </div> -->
+    <script src="barrring.js"></script>
+    <script>
+        var height = 500;
+        var width = 450;
+        var heightM = 550;
+        var widthM = 450;
+        var multiplier = 25;
+        var imgheight = 30;
+        var imgwidth = 40;
+        var div1 = d3.select("#left").append("div")
+            .style("opacity", 0);
+        // d3.select("#left").append("text").attr("x", 0).attr("y", 15)
+        //     .style("text-anchor", "middle")
+        //     .attr("stroke", "black")
+        //     .text("Date Versus No. of Deaths")
+        var svgContainer = d3.select("#left").append("svg")
+            .attr("id", "map")
+            .attr("width", width)
+            .attr("height", height)
+            .call(d3.behavior.zoom().on("zoom", function () {
+                svgContainer.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event
+                    .scale +
+                    ")")
+            })).append("g")
+            .attr('transform', 'translate(-60,20)');
+
+        var textcolor = "black";
+        svgContainer.append("text")
+            .attr("transform", "rotate(-10)")
+            .attr("x", "250")
+            .attr("y", "125")
+            .style("text-anchor", "middle")
+            .attr("font-size", "15px")
+            .attr("stroke", textcolor)
+            .text("OXFORD STREET");
+        svgContainer.append("text")
+            .attr("transform", "rotate(-25)")
+            .attr("x", "200")
+            .attr("y", "315")
+            .style("text-anchor", "center")
+            .attr("font-size", "15px")
+            .attr("stroke", textcolor)
+            .text("BROAD STREET");
+        svgContainer.append("text")
+            .attr("transform", "rotate(65,428,150)")
+            .attr("y", "150")
+            .attr("x", "428")
+            .style("text-anchor", "center")
+            .attr("font-size", "15px")
+            .attr("stroke", textcolor)
+            .text("DEAN STREET");
+        svgContainer.append("text")
+            .attr("transform", "rotate(60,100,300)")
+            .attr("y", "300")
+            .attr("x", "100")
+            .style("text-anchor", "center")
+            .attr("font-size", "13px")
+            .attr("stroke", textcolor)
+            .text("NEWBOND STREET");
+        svgContainer.append("text")
+            .attr("transform", "rotate(-40,300,335)")
+            .attr("y", "335")
+            .attr("x", "300")
+            .style("text-anchor", "center")
+            .attr("font-size", "13px")
+            .attr("stroke", textcolor)
+            .text("BREWER STREET");
+        svgContainer.append("text")
+            .attr("transform", "rotate(60,180,300)")
+            .attr("y", "300")
+            .attr("x", "180")
+            .style("text-anchor", "center")
+            .attr("font-size", "13px")
+            .attr("stroke", textcolor)
+            .text("BAKER STREET");
+        svgContainer.append("rect")
+            .attr("transform", "rotate(-25,250,160)")
+            .attr("x", 250)
+            .attr("y", 160)
+            .attr("width", 42)
+            .attr("height", 33)
+            .attr("stroke", textcolor)
+            .attr("stroke-width", 1)
+            .style("fill", "#fa9fb5");
+        var div3 = d3.select("#left").append("div")
+            .attr("class", "tooltip4")
+            .style("opacity", 0);
+        svgContainer.append("text")
+            .attr("transform", "rotate(-25,300,150)")
+            .attr("y", "150")
+            .attr("x", "255")
+            .style("text-anchor", "center")
+            .attr("font-size", "5px")
+            .attr("font-family", "sans-serif")
+            .attr("stroke", textcolor)
+            .text("WORK HOUSE")
+            .on("mouseover", function (d, i) {
+                div3.transition()
+                    .duration(1)
+                    .style("opacity", 5);
+                div3.html("<b>WORK HOUSE</b>")
+                    .style("left", (d3.event.pageX + 10) + "px")
+                    .style("top", (d3.event.pageY - 85) + "px");
+            })
+            .on("mouseout", function (d) {
+                div3.transition()
+                    .duration(0)
+                    .style("opacity", 0);
+            });
+        svgContainer.append("rect")
+            .attr("transform", "rotate(65,350,189)")
+            .attr("x", 350)
+            .attr("y", 189)
+            .attr("width", 27)
+            .attr("height", 16)
+            .style("fill", "#31a354");
+        var div1 = d3.select("#left").append("div")
+            .attr("class", "tooltip1")
+            .style("opacity", 0);
+        svgContainer.append("text")
+            .attr("transform", "rotate(65,341,193)")
+            .attr("y", "193")
+            .attr("x", "341")
+            .style("text-anchor", "center")
+            .attr("font-size", "6px")
+            .attr("font-type", "Lucida Console")
+            .attr("stroke", textcolor)
+            .text("BREWERY")
+            .on("mouseover", function (d, i) {
+                div1.transition()
+                    .duration(1)
+                    .style("opacity", 5);
+                div1.html("<b>BREWERY</b>")
+                    .style("left", (d3.event.pageX + 10) + "px")
+                    .style("top", (d3.event.pageY - 85) + "px");
+            })
+            .on("mouseout", function (d) {
+                div1.transition()
+                    .duration(0)
+                    .style("opacity", 0);
+            });
+        var brewery = [{
+            x: 417,
+            y: 207.5,
+            w: 30,
+            h: 16,
+            rotate: 62.5
+        }]
+        d3.json("media/streets.json", function (array) {
+            for (i = 0; i < array.length; i++) {
+                var lineData = array[i];
+                var lineFunction = d3.svg.line().x(function (d) {
+                    return d.x *
+                        multiplier;
+                }).y(function (d) {
+                    return (height - d.y * multiplier);
+                }).interpolate("linear");
+                var
+                    lineGraph = svgContainer.append("path").attr("d", lineFunction(lineData)).attr(
+                        "stroke",
+                        "black")
+                    .attr("stroke-width", 2).attr("fill", "none");
+            };
+            d3.csv("media/pumps.csv", function (data) {
+                var div1 = d3.select("#left").append("div")
+                    .attr("class", "tooltip2")
+                    .style("opacity", 0);
+                var images = svgContainer.selectAll("image")
+                    .data(data)
+                    .enter()
+                    .append("image");
+                // printing street names
+                var myimage = images
+                    .attr('xlink:href', "media/handpump.png")
+                    .attr("x", function (d) {
+                        return d.x * multiplier - (imgwidth /
+                            2); //for aligning at the exact point
+                    })
+                    .attr("y", function (d) {
+                        return height - d.y * multiplier - (imgheight / 2);
+                    })
+                    .attr('width', imgwidth)
+                    .attr('height', imgheight)
+                    .on("mouseover", function (d, i) {
+                        div1.transition()
+                            .duration(1)
+                            .style("opacity", 5);
+                        div1.html("<b>Pump</b>")
+                            .style("left", (d3.event.pageX + 10) + "px")
+                            .style("top", (d3.event.pageY - 85) + "px");
+                    })
+                    .on("mouseout", function (d) {
+                        div1.transition()
+                            .duration(0)
+                            .style("opacity", 0);
+                    })
+            });
+            // getting all the deaths data
+        });
+
+        function loadDeathsDay(date) {
+            d3.csv("media/deathdays.csv", function (deathdays) {
+                d3.selectAll("#points").remove();
+                d3.selectAll(".legends").remove();
+                var svgContainerM = d3.select("#middle").append("svg")
+                    .attr("class", "legends")
+                    .attr("width", widthM)
+                    .attr("height", heightM)
+                    .attr('transform', 'translate(0,60)');
+
+                function barChart() {
+                    var margin = {
+                            top: 75,
+                            right: 20,
+                            bottom: 30,
+                            left: 40
+                        },
+                        width = 400 - margin.left - margin.right,
+                        height = 300 - margin.top - margin.bottom;
+                    var x0 = d3.scale.ordinal()
+                        .rangeRoundBands([0, width], .1);
+                    var x1 = d3.scale.ordinal();
+                    var y = d3.scale.linear()
+                        .range([height, 0]);
+                    var xAxis = d3.svg.axis()
+                        .scale(x0)
+                        .tickSize(0)
+                        .orient("bottom");
+                    var yAxis = d3.svg.axis()
+                        .scale(y)
+                        .orient("left");
+                    var color = d3.scale.ordinal()
+                        .range(["#ca0020", "#f4a582", "#d5d5d5", "#92c5de", "#0571b0", "#00678"]);
+                    // var svgC = d3.select(".legends")
+                    // // .attr("width", width + margin.left + margin.right)
+                    // // .attr("height", height + margin.top + margin.bottom + 50)
+                    // // .attr('transform', 'translate(40,200)')
+                    // .append("g")
+                    // .attr("transform", "translate(0,0)");
+                    d3.json("media/data.json", function (error, data) {
+                        var categoriesNames = data.map(function (d) {
+                            return d.category;
+                        });
+                        var sexNames = data[0].values.map(function (d) {
+                            return d.sex;
+                        });
+                        var div1 = d3.select("body").append("div")
+                            .attr("class", "tooltip5")
+                            .style("opacity", 0);
+                        x0.domain(categoriesNames);
+                        x1.domain(sexNames).rangeRoundBands([0, x0.rangeBand()]);
+                        y.domain([0, d3.max(data, function (category) {
+                            return d3.max(category.values, function (d) {
+                                return d.value;
+                            });
+                        })]);
+                        var svgC = svgContainerM.append("g")
+                            .attr('transform', 'translate(40,225)');
+                        svgC.append("g")
+                            .attr("class", "Title")
+                            .append("text")
+                            .attr("transform", "translate(80,-40)")
+                            .attr("y", 6)
+                            .attr("dy", ".71em")
+                            .style("text-anchor", "center")
+                            .style('font-weight', 'bold')
+                            .style('font-size', '20px')
+                            .text("Gender & Age Chart");
+                        svgC.append("g")
+                            .attr("class", "x axis")
+                            .attr("transform", "translate(0," + height + ")")
+                            .call(xAxis)
+                            .append("text")
+                            .attr("transform", "translate(250,20)")
+                            .attr("y", 6)
+                            .attr("dy", ".71em")
+                            .style("text-anchor", "end")
+                            // .style('font-weight', 'bold')
+                            .text("Age Groups");
+                        svgC.append("g")
+                            .attr("class", "y axis")
+                            .style('opacity', '0')
+                            .call(yAxis)
+                            .append("text")
+                            .attr("transform", "rotate(-90)", "translate(0,70)")
+                            .attr("y", 6)
+                            .attr("dy", ".71em")
+                            .style("text-anchor", "end")
+                            // .style('font-weight', 'bold')
+                            .text("Deaths");
+                        svgC.select('.y').transition().duration(500).delay(1300).style(
+                            'opacity', '1');
+                        var slice = svgC.selectAll(".slice")
+                            .data(data)
+                            .enter().append("g")
+                            .attr("class", "g")
+                            .attr("transform", function (d) {
+                                return "translate(" + x0(d.category) + ",0)";
+                            });
+                        slice.selectAll("rect")
+                            .data(function (d) {
+                                return d.values;
+                            })
+                            .enter().append("rect")
+                            .attr("width", x1.rangeBand() - 5)
+                            .attr("x", function (d) {
+                                return x1(d.sex);
+                            })
+                            .style("fill", function (d) {
+                                return color(d.sex)
+                            })
+                            .attr("y", function (d) {
+                                return y(0);
+                            })
+                            .attr("height", function (d) {
+                                return height - y(0);
+                            })
+                            .on("mouseover", function (d) {
+                                d3.select(this).style("fill", d3.rgb(color(d.sex)).darker(2));
+                                div1.transition()
+                                    .duration(1)
+                                    .style("opacity", 5);
+                                div1.html("<b>Gender: " + d.sex +
+                                        "<br>Deaths: " + d.value)
+                                    .style("left", (d3.event.pageX) + "px")
+                                    .style("top", (d3.event.pageY) + "px");
+                            })
+                            .on("mouseout", function (d) {
+                                d3.select(this).style("fill", color(d.sex));
+                                div1.transition()
+                                    .duration(0)
+                                    .style("opacity", 0);
+                            });
+                        slice.selectAll("rect")
+                            .transition()
+                            .delay(function (d) {
+                                return Math.random() * 1000;
+                            })
+                            .duration(1000)
+                            .attr("y", function (d) {
+                                return y(d.value);
+                            })
+                            .attr("height", function (d) {
+                                return height - y(d.value);
+                            });
+                        //Legend
+                        var legend = svgC.selectAll(".legend")
+                            .data(data[0].values.map(function (d) {
+                                return d.sex;
+                            }).reverse())
+                            .enter().append("g")
+                            .attr("class", "legend")
+                            .attr("transform", function (d, i) {
+                                return "translate(0," + i * 20 + ")";
+                            })
+                            .style("opacity", "0");
+                        legend.append("rect")
+                            .attr("x", width - 80)
+                            .attr("width", 10)
+                            .attr("height", 10)
+                            .style("fill", function (d) {
+                                return color(d);
+                            });
+                        legend.append("text")
+                            .attr("x", width - 85)
+                            .attr("y", 5)
+                            .attr("dy", ".35em")
+                            .style("text-anchor", "end")
+                            .text(function (d) {
+                                return d;
+                            });
+                        legend.transition().duration(500).delay(function (d, i) {
+                            return 1300 + 100 * i;
+                        }).style("opacity", "1");
+                    });
+                }
+                barChart();
+                var legendsGroupM = svgContainerM.append("g")
+                    .attr('transform', 'translate(-250,-50)');
+                legendsGroupM.append("g")
+                    .append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "100")
+                    .attr("r", "6")
+                    .attr("fill", "#7f0000");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "105")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#7f0000")
+                    .text("Female");
+                legendsGroupM.append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "120")
+                    .attr("r", "6")
+                    .attr("fill", "#3690c0");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "125")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#3690c0")
+                    .text("Male");
+                var before = 0;
+                var present = 0;
+                for (i = 0; i < deathdays.length; i++) {
+                    before = before + parseFloat(deathdays[i].deaths)
+                    if (deathdays[i].date == date) {
+                        // console.log(before - deathdays[i].deaths);
+                        before = before - parseFloat(deathdays[i].deaths)
+                        present = parseFloat(deathdays[i].deaths);
+                        break;
+                    }
+                }
+                d3.csv("media/deaths_age_sex.csv", function (deathdays) {
+                    deathdays.forEach(function (d, i) {
+                        //console.log(d.x, i);
+                        //console.log(before);
+                        var div1 = d3.select("#left").append("div")
+                            .attr("class", "tooltip3")
+                            .style("opacity", 0);
+                        var circleDeaths = svgContainer.selectAll("circle")
+                            .data(deathdays)
+                            .enter()
+                            .append("circle")
+                            .attr("id", "points")
+                            .attr("cx", function (d, i) {
+                                // if (i > before - 1 && i < present +
+                                //     before
+                                // ) { //this line is for getting particular date deaths
+                                if (i < present + before) {
+                                    // console.log(before);
+                                    return d.x * multiplier;
+                                }
+                            })
+                            .attr("cy", function (d, i) {
+                                // if (i > before - 1 && i < present +
+                                //     before
+                                // ) { //this line is for getting particular date deaths
+                                if (i < present + before) {
+                                    return height - d.y * multiplier;
+                                }
+                            })
+                            .attr('r', 3.5)
+                            .attr('fill', function (d) {
+                                if (d.gender == 1) {
+                                    return "#7f0000";
+                                } else {
+                                    return "#3690c0";
+                                }
+                            })
+                            .on("mouseover", function (d, i) {
+                                div1.transition()
+                                    .duration(1)
+                                    .style("opacity", 5);
+                                d3.select(this)
+                                    .transition()
+                                    .attr("r", "6");
+                                if (d.gender == 1) {
+                                    var sex = "Female";
+                                } else {
+                                    var sex = "Male";
+                                }
+                                var ageGroup = [];
+                                for (var i = 0; i < 6; i++) {
+                                    // var lowerBound=10 * (i) + 1; // var upperBound=10 + lowerBound;
+                                    if (i == 0) {
+                                        ageGroup[i] = "0 - 10";
+                                    } else if (i == 1) {
+                                        ageGroup[i] = "11 - 20";
+                                    } else if (i == 2) {
+                                        ageGroup[i] = "21 - 40";
+                                    } else if (i == 3) {
+                                        ageGroup[i] = "41 - 60";
+                                    } else if (i == 4) {
+                                        ageGroup[i] = "61 - 80";
+                                    } else if (i == 5) {
+                                        ageGroup[i] = "   > 80";
+                                    }
+                                } // console.log(ageGroup[+d.age]); 
+                                div1.html("<b>Gender: " + sex +
+                                        "</br>Age Group: " + ageGroup[+d
+                                            .age])
+                                    .style("left", (d3.event.pageX + 10) + "px")
+                                    .style("top", (d3.event.pageY - 65) + "px");
+                            })
+                            .on("mouseout", function (d) {
+                                d3.select(this)
+                                    .transition()
+                                    .attr("r", "3.5");
+                                div1.transition()
+                                    .duration(0)
+                                    .style("opacity", 0);
+                            })
+                    })
+                })
+            })
+        }
+        //function get map based on gender
+        function deleteall() {
+            d3.selectAll("#points").remove();
+            d3.selectAll(".legends").remove();
+            var svgContainerM = d3.select("#middle").append("svg")
+                .attr("class", "legends")
+                .attr("width", widthM)
+                .attr("height", heightM)
+                .attr('transform', 'translate(0,60)');
+            var legendsGroupM = svgContainerM.append("g")
+                .attr('transform', 'translate(-250,-20)');
+            legendsGroupM.append("g")
+                .append("circle")
+                .attr("cx", "400")
+                .attr("cy", "100")
+                .attr("r", "6")
+                .attr("fill", "#fa9fb5");
+            legendsGroupM.append("text")
+                .attr("x", "415")
+                .attr("y", "105")
+                .style("text-anchor", "left")
+                .attr("stroke", "#fa9fb5")
+                .text("Workhouse");
+            legendsGroupM.append("circle")
+                .attr("cx", "400")
+                .attr("cy", "120")
+                .attr("r", "6")
+                .attr("fill", "#31a354");
+            legendsGroupM.append("text")
+                .attr("x", "415")
+                .attr("y", "125")
+                .style("text-anchor", "left")
+                .attr("stroke", "#31a354")
+                .text("Brewery");
+
+            function barChart() {
+                var margin = {
+                        top: 75,
+                        right: 20,
+                        bottom: 30,
+                        left: 40
+                    },
+                    width = 400 - margin.left - margin.right,
+                    height = 300 - margin.top - margin.bottom;
+                var x0 = d3.scale.ordinal()
+                    .rangeRoundBands([0, width], .1);
+                var x1 = d3.scale.ordinal();
+                var y = d3.scale.linear()
+                    .range([height, 0]);
+                var xAxis = d3.svg.axis()
+                    .scale(x0)
+                    .tickSize(0)
+                    .orient("bottom");
+                var yAxis = d3.svg.axis()
+                    .scale(y)
+                    .orient("left");
+                var color = d3.scale.ordinal()
+                    .range(["#ca0020", "#f4a582", "#d5d5d5", "#92c5de", "#0571b0", "#00678"]);
+                // var svgC = d3.select(".legends")
+                // // .attr("width", width + margin.left + margin.right)
+                // // .attr("height", height + margin.top + margin.bottom + 50)
+                // // .attr('transform', 'translate(40,200)')
+                // .append("g")
+                // .attr("transform", "translate(0,0)");
+                d3.json("media/data.json", function (error, data) {
+                    var categoriesNames = data.map(function (d) {
+                        return d.category;
+                    });
+                    var sexNames = data[0].values.map(function (d) {
+                        return d.sex;
+                    });
+                    var div1 = d3.select("body").append("div")
+                        .attr("class", "tooltip5")
+                        .style("opacity", 0);
+                    x0.domain(categoriesNames);
+                    x1.domain(sexNames).rangeRoundBands([0, x0.rangeBand()]);
+                    y.domain([0, d3.max(data, function (category) {
+                        return d3.max(category.values, function (d) {
+                            return d.value;
+                        });
+                    })]);
+
+                    var svgC = svgContainerM.append("g")
+                        .attr('transform', 'translate(40,225)');
+                    svgC.append("g")
+                        .attr("class", "Title")
+                        .append("text")
+                        .attr("transform", "translate(80,-40)")
+                        .attr("y", 6)
+                        .attr("dy", ".71em")
+                        .style("text-anchor", "center")
+                        .style('font-weight', 'bold')
+                        .style('font-size', '20px')
+                        .text("Gender & Age Chart");
+                    svgC.append("g")
+                        .attr("class", "x axis")
+                        .attr("transform", "translate(0," + height + ")")
+                        .call(xAxis)
+                        .append("text")
+                        .attr("transform", "translate(250,20)")
+                        .attr("y", 6)
+                        .attr("dy", ".71em")
+                        .style("text-anchor", "end")
+                        // .style('font-weight', 'bold')
+                        .text("Age Groups");
+                    svgC.append("g")
+                        .attr("class", "y axis")
+                        .style('opacity', '0')
+                        .call(yAxis)
+                        .append("text")
+                        .attr("transform", "rotate(-90)", "translate(0,70)")
+                        .attr("y", 6)
+                        .attr("dy", ".71em")
+                        .style("text-anchor", "end")
+                        // .style('font-weight', 'bold')
+                        .text("Deaths");
+                    svgC.select('.y').transition().duration(500).delay(1300).style(
+                        'opacity', '1');
+                    var slice = svgC.selectAll(".slice")
+                        .data(data)
+                        .enter().append("g")
+                        .attr("class", "g")
+                        .attr("transform", function (d) {
+                            return "translate(" + x0(d.category) + ",0)";
+                        });
+                    slice.selectAll("rect")
+                        .data(function (d) {
+                            return d.values;
+                        })
+                        .enter().append("rect")
+                        .attr("width", x1.rangeBand() - 5)
+                        .attr("x", function (d) {
+                            return x1(d.sex);
+                        })
+                        .style("fill", function (d) {
+                            return color(d.sex)
+                        })
+                        .attr("y", function (d) {
+                            return y(0);
+                        })
+                        .attr("height", function (d) {
+                            return height - y(0);
+                        })
+                        .on("mouseover", function (d) {
+                            d3.select(this).style("fill", d3.rgb(color(d.sex)).darker(2));
+                            div1.transition()
+                                .duration(1)
+                                .style("opacity", 5);
+                            div1.html("<b>Gender: " + d.sex +
+                                    "<br>Deaths: " + d.value)
+                                .style("left", (d3.event.pageX) + "px")
+                                .style("top", (d3.event.pageY) + "px");
+                        })
+                        .on("mouseout", function (d) {
+                            d3.select(this).style("fill", color(d.sex));
+                            div1.transition()
+                                .duration(0)
+                                .style("opacity", 0);
+                        });
+                    slice.selectAll("rect")
+                        .transition()
+                        .delay(function (d) {
+                            return Math.random() * 1000;
+                        })
+                        .duration(1000)
+                        .attr("y", function (d) {
+                            return y(d.value);
+                        })
+                        .attr("height", function (d) {
+                            return height - y(d.value);
+                        });
+                    //Legend
+                    var legend = svgC.selectAll(".legend")
+                        .data(data[0].values.map(function (d) {
+                            return d.sex;
+                        }).reverse())
+                        .enter().append("g")
+                        .attr("class", "legend")
+                        .attr("transform", function (d, i) {
+                            return "translate(0," + i * 20 + ")";
+                        })
+                        .style("opacity", "0");
+                    legend.append("rect")
+                        .attr("x", width - 80)
+                        .attr("width", 10)
+                        .attr("height", 10)
+                        .style("fill", function (d) {
+                            return color(d);
+                        });
+                    legend.append("text")
+                        .attr("x", width - 85)
+                        .attr("y", 5)
+                        .attr("dy", ".35em")
+                        .style("text-anchor", "end")
+                        .text(function (d) {
+                            return d;
+                        });
+                    legend.transition().duration(500).delay(function (d, i) {
+                        return 1300 + 100 * i;
+                    }).style("opacity", "1");
+                });
+            }
+            barChart();
+        };
+
+        function getDeathsGenderAge() {
+            d3.csv("media/deaths_age_sex.csv", function (deathsdata) {
+                d3.selectAll("#points").remove();
+                d3.selectAll(".legends").remove();
+                var svgContainerM = d3.select("#middle").append("svg")
+                    .attr("class", "legends")
+                    .attr("width", widthM)
+                    .attr("height", heightM)
+                    .attr('transform', 'translate(0,60)');
+
+                function barChart() {
+                    var margin = {
+                            top: 75,
+                            right: 20,
+                            bottom: 30,
+                            left: 40
+                        },
+                        width = 400 - margin.left - margin.right,
+                        height = 300 - margin.top - margin.bottom;
+                    var x0 = d3.scale.ordinal()
+                        .rangeRoundBands([0, width], .1);
+                    var x1 = d3.scale.ordinal();
+                    var y = d3.scale.linear()
+                        .range([height, 0]);
+                    var xAxis = d3.svg.axis()
+                        .scale(x0)
+                        .tickSize(0)
+                        .orient("bottom");
+                    var yAxis = d3.svg.axis()
+                        .scale(y)
+                        .orient("left");
+                    var color = d3.scale.ordinal()
+                        .range(["#ca0020", "#f4a582", "#d5d5d5", "#92c5de", "#0571b0", "#00678"]);
+                    // var svgC = d3.select(".legends")
+                    // // .attr("width", width + margin.left + margin.right)
+                    // // .attr("height", height + margin.top + margin.bottom + 50)
+                    // // .attr('transform', 'translate(40,200)')
+                    // .append("g")
+                    // .attr("transform", "translate(0,0)");
+                    d3.json("media/data.json", function (error, data) {
+                        var categoriesNames = data.map(function (d) {
+                            return d.category;
+                        });
+                        var sexNames = data[0].values.map(function (d) {
+                            return d.sex;
+                        });
+                        var div1 = d3.select("body").append("div")
+                            .attr("class", "tooltip5")
+                            .style("opacity", 0);
+                        x0.domain(categoriesNames);
+                        x1.domain(sexNames).rangeRoundBands([0, x0.rangeBand()]);
+                        y.domain([0, d3.max(data, function (category) {
+                            return d3.max(category.values, function (d) {
+                                return d.value;
+                            });
+                        })]);
+                        var svgC = svgContainerM.append("g")
+                            .attr('transform', 'translate(40,225)');
+                        svgC.append("g")
+                            .attr("class", "Title")
+                            .append("text")
+                            .attr("transform", "translate(80,-40)")
+                            .attr("y", 6)
+                            .attr("dy", ".71em")
+                            .style("text-anchor", "center")
+                            .style('font-weight', 'bold')
+                            .style('font-size', '20px')
+                            .text("Gender & Age Chart");
+                        svgC.append("g")
+                            .attr("class", "x axis")
+                            .attr("transform", "translate(0," + height + ")")
+                            .call(xAxis)
+                            .append("text")
+                            .attr("transform", "translate(250,20)")
+                            .attr("y", 6)
+                            .attr("dy", ".71em")
+                            .style("text-anchor", "end")
+                            // .style('font-weight', 'bold')
+                            .text("Age Groups");
+                        svgC.append("g")
+                            .attr("class", "y axis")
+                            .style('opacity', '0')
+                            .call(yAxis)
+                            .append("text")
+                            .attr("transform", "rotate(-90)", "translate(0,70)")
+                            .attr("y", 6)
+                            .attr("dy", ".71em")
+                            .style("text-anchor", "end")
+                            // .style('font-weight', 'bold')
+                            .text("Deaths");
+                        svgC.select('.y').transition().duration(500).delay(1300).style(
+                            'opacity', '1');
+                        var slice = svgC.selectAll(".slice")
+                            .data(data)
+                            .enter().append("g")
+                            .attr("class", "g")
+                            .attr("transform", function (d) {
+                                return "translate(" + x0(d.category) + ",0)";
+                            });
+                        slice.selectAll("rect")
+                            .data(function (d) {
+                                return d.values;
+                            })
+                            .enter().append("rect")
+                            .attr("width", x1.rangeBand() - 5)
+                            .attr("x", function (d) {
+                                return x1(d.sex);
+                            })
+                            .style("fill", function (d) {
+                                return color(d.sex)
+                            })
+                            .attr("y", function (d) {
+                                return y(0);
+                            })
+                            .attr("height", function (d) {
+                                return height - y(0);
+                            })
+                            .on("mouseover", function (d) {
+                                d3.select(this).style("fill", d3.rgb(color(d.sex)).darker(2));
+                                div1.transition()
+                                    .duration(1)
+                                    .style("opacity", 5);
+                                div1.html("<b>Gender: " + d.sex +
+                                        "<br>Deaths: " + d.value)
+                                    .style("left", (d3.event.pageX) + "px")
+                                    .style("top", (d3.event.pageY) + "px");
+                            })
+                            .on("mouseout", function (d) {
+                                d3.select(this).style("fill", color(d.sex));
+                                div1.transition()
+                                    .duration(0)
+                                    .style("opacity", 0);
+                            });
+                        slice.selectAll("rect")
+                            .transition()
+                            .delay(function (d) {
+                                return Math.random() * 1000;
+                            })
+                            .duration(1000)
+                            .attr("y", function (d) {
+                                return y(d.value);
+                            })
+                            .attr("height", function (d) {
+                                return height - y(d.value);
+                            });
+                        //Legend
+                        var legend = svgC.selectAll(".legend")
+                            .data(data[0].values.map(function (d) {
+                                return d.sex;
+                            }).reverse())
+                            .enter().append("g")
+                            .attr("class", "legend")
+                            .attr("transform", function (d, i) {
+                                return "translate(0," + i * 20 + ")";
+                            })
+                            .style("opacity", "0");
+                        legend.append("rect")
+                            .attr("x", width - 80)
+                            .attr("width", 10)
+                            .attr("height", 10)
+                            .style("fill", function (d) {
+                                return color(d);
+                            });
+                        legend.append("text")
+                            .attr("x", width - 85)
+                            .attr("y", 5)
+                            .attr("dy", ".35em")
+                            .style("text-anchor", "end")
+                            .text(function (d) {
+                                return d;
+                            });
+                        legend.transition().duration(500).delay(function (d, i) {
+                            return 1300 + 100 * i;
+                        }).style("opacity", "1");
+                    });
+                }
+                barChart();
+                var legendsGroupM = svgContainerM.append("g")
+                    .attr('transform', 'translate(-250,-50)');
+                legendsGroupM.append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "100")
+                    .attr("r", "6")
+                    .attr("fill", "#a6bddb");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "105")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#a6bddb")
+                    .text("0 - 10");
+                legendsGroupM.append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "120")
+                    .attr("r", "6")
+                    .attr("fill", "#74a9cf");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "125")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#74a9cf")
+                    .text("11 - 20");
+                legendsGroupM.append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "140")
+                    .attr("r", "6")
+                    .attr("fill", "#3690c0");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "145")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#3690c0")
+                    .text("21 - 40");
+                legendsGroupM.append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "160")
+                    .attr("r", "6")
+                    .attr("fill", "#0570b0");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "165")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#0570b0")
+                    .text("41 - 60");
+                legendsGroupM.append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "180")
+                    .attr("r", "6")
+                    .attr("fill", "#045a8d");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "185")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#045a8d")
+                    .text("61 - 80");
+                legendsGroupM.append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "200")
+                    .attr("r", "6")
+                    .attr("fill", "#023858");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "205")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#023858")
+                    .text(" " + "> 80");
+                legendsGroupM.append("text")
+                    .attr("x", "400")
+                    .attr("y", "85")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#023858")
+                    .text("Male Age");
+                legendsGroupM.append("text")
+                    .attr("x", "500")
+                    .attr("y", "85")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#7f0000")
+                    .text("Female Age");
+                legendsGroupM.append("circle")
+                    .attr("cx", "500")
+                    .attr("cy", "100")
+                    .attr("r", "6")
+                    .attr("fill", "#fdbb84");
+                legendsGroupM.append("text")
+                    .attr("x", "515")
+                    .attr("y", "105")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#fdbb84")
+                    .text("0 - 10");
+                legendsGroupM.append("circle")
+                    .attr("cx", "500")
+                    .attr("cy", "120")
+                    .attr("r", "6")
+                    .attr("fill", "#fc8d59");
+                legendsGroupM.append("text")
+                    .attr("x", "515")
+                    .attr("y", "125")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#fc8d59")
+                    .text("11 - 20");
+                legendsGroupM.append("circle")
+                    .attr("cx", "500")
+                    .attr("cy", "140")
+                    .attr("r", "6")
+                    .attr("fill", "#ef6548");
+                legendsGroupM.append("text")
+                    .attr("x", "515")
+                    .attr("y", "145")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#ef6548")
+                    .text("21 - 40");
+                legendsGroupM.append("circle")
+                    .attr("cx", "500")
+                    .attr("cy", "160")
+                    .attr("r", "6")
+                    .attr("fill", "#d7301f");
+                legendsGroupM.append("text")
+                    .attr("x", "515")
+                    .attr("y", "165")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#d7301f")
+                    .text("41 - 60");
+                legendsGroupM.append("circle")
+                    .attr("cx", "500")
+                    .attr("cy", "180")
+                    .attr("r", "6")
+                    .attr("fill", "#b30000");
+                legendsGroupM.append("text")
+                    .attr("x", "515")
+                    .attr("y", "185")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#b30000")
+                    .text("61 - 80");
+                legendsGroupM.append("circle")
+                    .attr("cx", "500")
+                    .attr("cy", "200")
+                    .attr("r", "6")
+                    .attr("fill", "#7f0000");
+                legendsGroupM.append("text")
+                    .attr("x", "515")
+                    .attr("y", "205")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#7f0000")
+                    .text(" " + "> 80");
+                var colorsFemale = ["#fdbb84",
+                    "#fc8d59",
+                    "#ef6548",
+                    "#d7301f", "#b30000", "#7f0000"
+                ];
+                var colorsMale = ["#a6bddb",
+                    "#74a9cf",
+                    "#3690c0",
+                    "#0570b0", "#045a8d", "#023858"
+                ];
+                var div1 = d3.select("#left").append("div")
+                    .attr("class", "tooltip3")
+                    .style("opacity", 0);
+                var circleDeaths = svgContainer.selectAll("circle")
+                    .data(deathsdata)
+                    .enter()
+                    .append("circle")
+                    .attr("id", "points")
+                    .attr("cx", function (d) {
+                        return d.x * multiplier;
+                    })
+                    .attr("cy", function (d) {
+                        return height - d.y * multiplier;
+                    })
+                    .attr('r', 3.5)
+                    .style("opacity", 100)
+                    .attr('fill', function (d) {
+                        //console.log(colors[+d.deaths]);
+                        if (d.gender == 1) {
+                            return colorsFemale[+d.age];
+                        } else if ((d.gender == 0)) {
+                            return colorsMale[+d.age];
+                        }
+                    })
+                    .on("mouseover", function (d, i) {
+                        div1.transition()
+                            .duration(1)
+                            .style("opacity", 5);
+                        d3.select(this)
+                            .transition()
+                            .attr("r", "6");
+                        if (d.gender == 1) {
+                            var sex = "Female";
+                        } else {
+                            var sex = "Male";
+                        }
+                        var ageGroup = [];
+                        for (var i = 0; i < 6; i++) {
+                            if (i == 0) {
+                                ageGroup[i] = "0 - 10";
+                            } else if (i == 1) {
+                                ageGroup[i] = "11 - 20";
+                            } else if (i == 2) {
+                                ageGroup[i] = "21 - 40";
+                            } else if (i == 3) {
+                                ageGroup[i] = "41 - 60";
+                            } else if (i == 4) {
+                                ageGroup[i] = "61 - 80";
+                            } else if (i == 5) {
+                                ageGroup[i] = "   > 80";
+                            }
+                        }
+                        console.log(ageGroup[+d.age]);
+                        div1.html("<b>Gender: " + sex +
+                                "</br>Age Group: " + ageGroup[+d
+                                    .age])
+                            .style("left", (d3.event.pageX + 10) + "px")
+                            .style("top", (d3.event.pageY - 15) + "px");
+                    })
+                    .on("mouseout", function (d) {
+                        d3.select(this)
+                            .transition()
+                            .attr("r", "3.5");
+                        div1.transition()
+                            .duration(0)
+                            .style("opacity", 0);
+                    })
+            })
+        }
+    </script>
+    <script>
+        function getDeathsGender() {
+            d3.csv("media/deaths_age_sex.csv", function (deathsdata) {
+                d3.selectAll("#points").remove();
+                d3.selectAll(".legends").remove();
+                var svgContainerM = d3.select("#middle").append("svg")
+                    .attr("class", "legends")
+                    .attr("width", widthM)
+                    .attr("height", heightM)
+                    .attr('transform', 'translate(0,60)');
+                var legendsGroupM = svgContainerM.append("g")
+                    .attr('transform', 'translate(-250,-20)');
+                legendsGroupM.append("g")
+                    .append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "100")
+                    .attr("r", "6")
+                    .attr("fill", "#7f0000");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "105")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#7f0000")
+                    .text("Female");
+                legendsGroupM.append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "120")
+                    .attr("r", "6")
+                    .attr("fill", "#3690c0");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "125")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#3690c0")
+                    .text("Male");
+                var div1 = d3.select("body").append("div")
+                    .attr("class", "tooltip3")
+                    .style("opacity", 0);
+
+                function barChart() {
+                    var margin = {
+                            top: 75,
+                            right: 20,
+                            bottom: 30,
+                            left: 40
+                        },
+                        width = 400 - margin.left - margin.right,
+                        height = 300 - margin.top - margin.bottom;
+                    var x0 = d3.scale.ordinal()
+                        .rangeRoundBands([0, width], .1);
+                    var x1 = d3.scale.ordinal();
+                    var y = d3.scale.linear()
+                        .range([height, 0]);
+                    var xAxis = d3.svg.axis()
+                        .scale(x0)
+                        .tickSize(0)
+                        .orient("bottom");
+                    var yAxis = d3.svg.axis()
+                        .scale(y)
+                        .orient("left");
+                    var color = d3.scale.ordinal()
+                        .range(["#ca0020", "#f4a582", "#d5d5d5", "#92c5de", "#0571b0", "#00678"]);
+                    // var svgC = d3.select(".legends")
+                    // // .attr("width", width + margin.left + margin.right)
+                    // // .attr("height", height + margin.top + margin.bottom + 50)
+                    // // .attr('transform', 'translate(40,200)')
+                    // .append("g")
+                    // .attr("transform", "translate(0,0)");
+                    d3.json("media/data.json", function (error, data) {
+                        var categoriesNames = data.map(function (d) {
+                            return d.category;
+                        });
+                        var sexNames = data[0].values.map(function (d) {
+                            return d.sex;
+                        });
+                        var div1 = d3.select("body").append("div")
+                            .attr("class", "tooltip5")
+                            .style("opacity", 0);
+                        x0.domain(categoriesNames);
+                        x1.domain(sexNames).rangeRoundBands([0, x0.rangeBand()]);
+                        y.domain([0, d3.max(data, function (category) {
+                            return d3.max(category.values, function (d) {
+                                return d.value;
+                            });
+                        })]);
+                        var svgC = svgContainerM.append("g")
+                            .attr('transform', 'translate(40,225)');
+                        svgC.append("g")
+                            .attr("class", "Title")
+                            .append("text")
+                            .attr("transform", "translate(80,-40)")
+                            .attr("y", 6)
+                            .attr("dy", ".71em")
+                            .style("text-anchor", "center")
+                            .style('font-weight', 'bold')
+                            .style('font-size', '20px')
+                            .text("Gender & Age Chart");
+                        svgC.append("g")
+                            .attr("class", "x axis")
+                            .attr("transform", "translate(0," + height + ")")
+                            .call(xAxis)
+                            .append("text")
+                            .attr("transform", "translate(250,20)")
+                            .attr("y", 6)
+                            .attr("dy", ".71em")
+                            .style("text-anchor", "end")
+                            // .style('font-weight', 'bold')
+                            .text("Age Groups");
+                        svgC.append("g")
+                            .attr("class", "y axis")
+                            .style('opacity', '0')
+                            .call(yAxis)
+                            .append("text")
+                            .attr("transform", "rotate(-90)", "translate(0,70)")
+                            .attr("y", 6)
+                            .attr("dy", ".71em")
+                            .style("text-anchor", "end")
+                            // .style('font-weight', 'bold')
+                            .text("Deaths");
+                        svgC.select('.y').transition().duration(500).delay(1300).style(
+                            'opacity', '1');
+                        var slice = svgC.selectAll(".slice")
+                            .data(data)
+                            .enter().append("g")
+                            .attr("class", "g")
+                            .attr("transform", function (d) {
+                                return "translate(" + x0(d.category) + ",0)";
+                            });
+                        slice.selectAll("rect")
+                            .data(function (d) {
+                                return d.values;
+                            })
+                            .enter().append("rect")
+                            .attr("width", x1.rangeBand() - 5)
+                            .attr("x", function (d) {
+                                return x1(d.sex);
+                            })
+                            .style("fill", function (d) {
+                                return color(d.sex)
+                            })
+                            .attr("y", function (d) {
+                                return y(0);
+                            })
+                            .attr("height", function (d) {
+                                return height - y(0);
+                            })
+                            .on("mouseover", function (d) {
+                                d3.select(this).style("fill", d3.rgb(color(d.sex)).darker(2));
+                                div1.transition()
+                                    .duration(1)
+                                    .style("opacity", 5);
+                                div1.html("<b>Gender: " + d.sex +
+                                        "<br>Deaths: " + d.value)
+                                    .style("left", (d3.event.pageX) + "px")
+                                    .style("top", (d3.event.pageY) + "px");
+                            })
+                            .on("mouseout", function (d) {
+                                d3.select(this).style("fill", color(d.sex));
+                                div1.transition()
+                                    .duration(0)
+                                    .style("opacity", 0);
+                            });
+                        slice.selectAll("rect")
+                            .transition()
+                            .delay(function (d) {
+                                return Math.random() * 1000;
+                            })
+                            .duration(1000)
+                            .attr("y", function (d) {
+                                return y(d.value);
+                            })
+                            .attr("height", function (d) {
+                                return height - y(d.value);
+                            });
+                        //Legend
+                        var legend = svgC.selectAll(".legend")
+                            .data(data[0].values.map(function (d) {
+                                return d.sex;
+                            }).reverse())
+                            .enter().append("g")
+                            .attr("class", "legend")
+                            .attr("transform", function (d, i) {
+                                return "translate(0," + i * 20 + ")";
+                            })
+                            .style("opacity", "0");
+                        legend.append("rect")
+                            .attr("x", width - 80)
+                            .attr("width", 10)
+                            .attr("height", 10)
+                            .style("fill", function (d) {
+                                return color(d);
+                            });
+                        legend.append("text")
+                            .attr("x", width - 85)
+                            .attr("y", 5)
+                            .attr("dy", ".35em")
+                            .style("text-anchor", "end")
+                            .text(function (d) {
+                                return d;
+                            });
+                        legend.transition().duration(500).delay(function (d, i) {
+                            return 1300 + 100 * i;
+                        }).style("opacity", "1");
+                    });
+                }
+                barChart();
+                var circleDeaths = svgContainer.selectAll("circle")
+                    .data(deathsdata)
+                    .enter()
+                    .append("circle")
+                    .attr("id", "points")
+                    .attr("cx", function (d) {
+                        return d.x * multiplier;
+                    })
+                    .attr("cy", function (d) {
+                        return height - d.y * multiplier;
+                    })
+                    .attr('r', 3.5)
+                    .style("opacity", 100)
+                    .attr('fill', function (d) {
+                        // female= red; male=blue
+                        if (d.gender == 1) {
+                            return "#7f0000";
+                        } else if ((d.gender == 0)) {
+                            return "#3690c0";
+                        }
+                    })
+                    .on("mouseover", function (d, i) {
+                        div1.transition()
+                            .duration(1)
+                            .style("opacity", 5);
+                        d3.select(this)
+                            .transition()
+                            .attr("r", "6");
+                        if (d.gender == 1) {
+                            var sex = "Female";
+                        } else {
+                            var sex = "Male";
+                        }
+                        var ageGroup = [];
+                        for (var i = 0; i <
+                            6; i++) {
+                            if (i == 0) {
+                                ageGroup[i] = "0 - 10";
+                            } else if (i == 1) {
+                                ageGroup[i] = "11 - 20";
+                            } else if (i == 2) {
+                                ageGroup[i] = "21 - 40";
+                            } else if (i == 3) {
+                                ageGroup[i] = "41 - 60";
+                            } else if (i == 4) {
+                                ageGroup[i] = "61 - 80";
+                            } else if (i == 5) {
+                                ageGroup[i] = "   > 80";
+                            }
+                        }
+                        console.log(ageGroup[+d.age])
+                        div1.html("<b>Gender: " + sex +
+                                "</br>Age Group: " + ageGroup[+d
+                                    .age])
+                            .style("left", (d3.event.pageX + 10) + "px")
+                            .style("top", (d3.event.pageY - 15) + "px");
+                    })
+                    .on("mouseout", function (d) {
+                        div1.transition()
+                            .duration(0)
+                            .style("opacity", 0);
+                        d3.select(this)
+                            .transition()
+                            .attr("r", "3.5");
+                    })
+            })
+        }
+        getDeathsGender();
+    </script>
+    <script>
+        function getDeathsAge() {
+            d3.csv("media/deaths_age_sex.csv", function (deathsdata) {
+                d3.selectAll("#points").remove();
+                d3.selectAll(".legends").remove();
+                var svgContainerM = d3.select("#middle").append("svg")
+                    .attr("class", "legends")
+                    .attr("width", widthM)
+                    .attr("height", heightM)
+                    .attr('transform', 'translate(0,60)');
+                var legendsGroupM = svgContainerM.append("g")
+                    .attr('transform', 'translate(-250,-50)');
+
+                function barChart() {
+                    var margin = {
+                            top: 75,
+                            right: 20,
+                            bottom: 30,
+                            left: 40
+                        },
+                        width = 400 - margin.left - margin.right,
+                        height = 300 - margin.top - margin.bottom;
+                    var x0 = d3.scale.ordinal()
+                        .rangeRoundBands([0, width], .1);
+                    var x1 = d3.scale.ordinal();
+                    var y = d3.scale.linear()
+                        .range([height, 0]);
+                    var xAxis = d3.svg.axis()
+                        .scale(x0)
+                        .tickSize(0)
+                        .orient("bottom");
+                    var yAxis = d3.svg.axis()
+                        .scale(y)
+                        .orient("left");
+                    var color = d3.scale.ordinal()
+                        .range(["#ca0020", "#f4a582", "#d5d5d5", "#92c5de", "#0571b0", "#00678"]);
+                    // var svgC = d3.select(".legends")
+                    // // .attr("width", width + margin.left + margin.right)
+                    // // .attr("height", height + margin.top + margin.bottom + 50)
+                    // // .attr('transform', 'translate(40,200)')
+                    // .append("g")
+                    // .attr("transform", "translate(0,0)");
+                    d3.json("media/data.json", function (error, data) {
+                        var categoriesNames = data.map(function (d) {
+                            return d.category;
+                        });
+                        var sexNames = data[0].values.map(function (d) {
+                            return d.sex;
+                        });
+                        var div1 = d3.select("body").append("div")
+                            .attr("class", "tooltip5")
+                            .style("opacity", 0);
+                        x0.domain(categoriesNames);
+                        x1.domain(sexNames).rangeRoundBands([0, x0.rangeBand()]);
+                        y.domain([0, d3.max(data, function (category) {
+                            return d3.max(category.values, function (d) {
+                                return d.value;
+                            });
+                        })]);
+                        var svgC = svgContainerM.append("g")
+                            .attr('transform', 'translate(40,225)');
+                        svgC.append("g")
+                            .attr("class", "Title")
+                            .append("text")
+                            .attr("transform", "translate(80,-40)")
+                            .attr("y", 6)
+                            .attr("dy", ".71em")
+                            .style("text-anchor", "center")
+                            .style('font-weight', 'bold')
+                            .style('font-size', '20px')
+                            .text("Gender & Age Chart");
+                        svgC.append("g")
+                            .attr("class", "x axis")
+                            .attr("transform", "translate(0," + height + ")")
+                            .call(xAxis)
+                            .append("text")
+                            .attr("transform", "translate(250,20)")
+                            .attr("y", 6)
+                            .attr("dy", ".71em")
+                            .style("text-anchor", "end")
+                            // .style('font-weight', 'bold')
+                            .text("Age Groups");
+                        svgC.append("g")
+                            .attr("class", "y axis")
+                            .style('opacity', '0')
+                            .call(yAxis)
+                            .append("text")
+                            .attr("transform", "rotate(-90)", "translate(0,70)")
+                            .attr("y", 6)
+                            .attr("dy", ".71em")
+                            .style("text-anchor", "end")
+                            // .style('font-weight', 'bold')
+                            .text("Deaths");
+                        svgC.select('.y').transition().duration(500).delay(1300).style(
+                            'opacity', '1');
+                        var slice = svgC.selectAll(".slice")
+                            .data(data)
+                            .enter().append("g")
+                            .attr("class", "g")
+                            .attr("transform", function (d) {
+                                return "translate(" + x0(d.category) + ",0)";
+                            });
+                        slice.selectAll("rect")
+                            .data(function (d) {
+                                return d.values;
+                            })
+                            .enter().append("rect")
+                            .attr("width", x1.rangeBand() - 5)
+                            .attr("x", function (d) {
+                                return x1(d.sex);
+                            })
+                            .style("fill", function (d) {
+                                return color(d.sex)
+                            })
+                            .attr("y", function (d) {
+                                return y(0);
+                            })
+                            .attr("height", function (d) {
+                                return height - y(0);
+                            })
+                            .on("mouseover", function (d) {
+                                d3.select(this).style("fill", d3.rgb(color(d.sex)).darker(2));
+                                div1.transition()
+                                    .duration(1)
+                                    .style("opacity", 5);
+                                div1.html("<b>Gender: " + d.sex +
+                                        "<br>Deaths: " + d.value)
+                                    .style("left", (d3.event.pageX) + "px")
+                                    .style("top", (d3.event.pageY) + "px");
+                            })
+                            .on("mouseout", function (d) {
+                                d3.select(this).style("fill", color(d.sex));
+                                div1.transition()
+                                    .duration(0)
+                                    .style("opacity", 0);
+                            });
+                        slice.selectAll("rect")
+                            .transition()
+                            .delay(function (d) {
+                                return Math.random() * 1000;
+                            })
+                            .duration(1000)
+                            .attr("y", function (d) {
+                                return y(d.value);
+                            })
+                            .attr("height", function (d) {
+                                return height - y(d.value);
+                            });
+                        //Legend
+                        var legend = svgC.selectAll(".legend")
+                            .data(data[0].values.map(function (d) {
+                                return d.sex;
+                            }).reverse())
+                            .enter().append("g")
+                            .attr("class", "legend")
+                            .attr("transform", function (d, i) {
+                                return "translate(0," + i * 20 + ")";
+                            })
+                            .style("opacity", "0");
+                        legend.append("rect")
+                            .attr("x", width - 80)
+                            .attr("width", 10)
+                            .attr("height", 10)
+                            .style("fill", function (d) {
+                                return color(d);
+                            });
+                        legend.append("text")
+                            .attr("x", width - 85)
+                            .attr("y", 5)
+                            .attr("dy", ".35em")
+                            .style("text-anchor", "end")
+                            .text(function (d) {
+                                return d;
+                            });
+                        legend.transition().duration(500).delay(function (d, i) {
+                            return 1300 + 100 * i;
+                        }).style("opacity", "1");
+                    });
+                }
+                barChart();
+                legendsGroupM.append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "100")
+                    .attr("r", "6")
+                    .attr("fill", "#a6bddb");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "105")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#a6bddb")
+                    .text("0 - 10");
+                legendsGroupM.append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "120")
+                    .attr("r", "6")
+                    .attr("fill", "#74a9cf");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "125")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#74a9cf")
+                    .text("11 - 20");
+                legendsGroupM.append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "140")
+                    .attr("r", "6")
+                    .attr("fill", "#3690c0");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "145")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#3690c0")
+                    .text("21 - 40");
+                legendsGroupM.append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "160")
+                    .attr("r", "6")
+                    .attr("fill", "#0570b0");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "165")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#0570b0")
+                    .text("41 - 60");
+                legendsGroupM.append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "180")
+                    .attr("r", "6")
+                    .attr("fill", "#045a8d");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "185")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#045a8d")
+                    .text("61 - 80");
+                legendsGroupM.append("circle")
+                    .attr("cx", "400")
+                    .attr("cy", "200")
+                    .attr("r", "6")
+                    .attr("fill", "#023858");
+                legendsGroupM.append("text")
+                    .attr("x", "415")
+                    .attr("y", "205")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#023858")
+                    .text(" " + "> 80");
+                legendsGroupM.append("text")
+                    .attr("x", "400")
+                    .attr("y", "75")
+                    .style("text-anchor", "left")
+                    .attr("stroke", "#023858")
+                    .text("Age");
+                var colors = ["#a6bddb",
+                    "#74a9cf",
+                    "#3690c0",
+                    "#0570b0", "#045a8d", "#023858"
+                ];
+                var div1 = d3.select("body").append("div")
+                    .attr("class", "tooltip3")
+                    .style("opacity", 0);
+                var circleDeaths = svgContainer.selectAll("circle")
+                    .data(deathsdata)
+                    .enter()
+                    .append("circle")
+                    .attr("id", "points")
+                    .attr("cx", function (d) {
+                        return d.x * multiplier;
+                    })
+                    .attr("cy", function (d) {
+                        return height - d.y * multiplier;
+                    })
+                    .attr('r', 3.5)
+                    .style("opacity", 100)
+                    .attr('fill', function (d) {
+                        //console.log(colors[+d.deaths]);
+                        return colors[+d.age];
+                    })
+                    .on("mouseover", function (d, i) {
+                        div1.transition()
+                            .duration(1)
+                            .style("opacity", 5);
+                        d3.select(this)
+                            .transition()
+                            .attr("r", "6");
+                        if (d.gender == 1) {
+                            var sex = "Female";
+                        } else {
+                            var sex = "Male";
+                        }
+                        var ageGroup = [];
+                        for (var i = 0; i < 6; i++) {
+                            // var lowerBound = 10 * (i) + 1;
+                            // var upperBound = 10 + lowerBound;
+                            if (i == 0) {
+                                ageGroup[i] = "0 - 10";
+                            } else if (i == 1) {
+                                ageGroup[i] = "11 - 20";
+                            } else if (i == 2) {
+                                ageGroup[i] = "21 - 40";
+                            } else if (i == 3) {
+                                ageGroup[i] = "41 - 60";
+                            } else if (i == 4) {
+                                ageGroup[i] = "61 - 80";
+                            } else if (i == 5) {
+                                ageGroup[i] = "   > 80";
+                            }
+                        }
+                        div1.html("<b>Gender: " + sex +
+                                "</br>Age Group: " + ageGroup[+d
+                                    .age])
+                            .style("left", (d3.event.pageX + 10) + "px")
+                            .style("top", (d3.event.pageY - 15) + "px");
+                    })
+                    .on("mouseout", function (d) {
+                        div1.transition()
+                            .duration(0)
+                            .style("opacity", 0);
+                        d3.select(this)
+                            .transition()
+                            .attr("r", "3.5");
+                    })
+            })
+        }
+    </script>
+    <script src="linechart.js"></script>
+</body>
+
+</html>
