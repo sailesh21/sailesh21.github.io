@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -24,12 +25,26 @@
     </style>
     <link rel="icon" type="image/jpg" href="media/profile_pic_icon_crop.jpg">
 
+
+
 </head>
 
+
 <body class="w3-light-grey">
+    <div class="w3-top w3-white w3-card" style="position: fixed;overflow: hidden;" id="navbar">
+        <a href="#" class="w3-bar-item w3-button w3-wide">Home</a>
+        <!-- Right-sided navbar links -->
+        <div class="w3-right w3-hide-small">
+            <a href="#experience" class="w3-bar-item w3-button">Experience</a>
+            <a href="#education" class="w3-bar-item w3-button">Education</a>
+            <a href="#projects" class="w3-bar-item w3-button">Projects</a>
+            <a href="#certificates" class="w3-bar-item w3-button"> Certificates</a>
+        </div>
+
+    </div>
 
     <!-- Page Container -->
-    <div class="w3-content w3-margin-top" style="max-width:1400px;">
+    <div class="w3-content w3-margin-top" style="max-width:1400px;padding-top: 20px;" id="experience">
 
         <!-- The Grid -->
         <div class="w3-row-padding">
@@ -241,7 +256,7 @@
                     </div>
                 </div>
 
-                <div class="w3-container w3-card w3-white w3-margin-bottom">
+                <div class="w3-container w3-card w3-white w3-margin-bottom" style="padding-top: 20px;" id="education">
                     <h2 class="w3-text-grey w3-padding-16"><i
                             class="fas fa-book-open fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
                     <div class="w3-container">
@@ -264,52 +279,180 @@
                         <h6 class=" w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>August 2013 - May
                             2017</h6>
                         <p>Bachelor's Degree in Electronics and Communication Engineering</p>
-                        <hr>
+                        <br>
                     </div>
 
                 </div>
-                <!--
-                <div class="w3-container w3-card w3-white w3-margin-bottom">
+                <div class="w3-container w3-card w3-white w3-margin-bottom" style="padding: 20px ;" id="projects">
                     <h2 class="w3-text-grey w3-padding-16"><i
                             class="fa fa-folder-open fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Projects</h2>
                     <div class="w3-container">
-                        <h5 class="w3-opacity"><b>Project 1</b></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>August 2019 -
-                            December 2020</h6>
-                        <p>To be updated</p>
+                        <h5 class="w3-opacity"><b>Gender Classification and Age Estimation using Convolutional Neural
+                                Networks</b></h5>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Sep 2020 -
+                            Dec 2020</h6>
+                        <p>
+                            <ul>
+                                <li>Developed a Deep Learning Model that used more than 5 GB of image dataset to predict
+                                    the
+                                    person’s gender and age group and annotate over the image or live webcam feed or
+                                    recorded video.</li>
+                                <li>Worked on Deep Learning Libraries (TensorFlow, Keras), Graphical Processing Unit,
+                                    Computer
+                                    Vision Library (OpenCV), and Jupyter Notebook for developing the model.</li>
+                            </ul>
+                        </p>
                         <hr>
                     </div>
                     <div class="w3-container">
-                        <h5 class="w3-opacity"><b>Project 2</b></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>August 2013 - May
-                            2017</h6>
-                        <p>To be updated</p>
+                        <h5 class="w3-opacity"><b>Data Visualization of US Foreign Trade Statistics</b></h5>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Sep 2020 - Dec
+                            2020</h6>
+                        <p>
+                            <ul>
+                                <li>This project is about analyzing the US census trade data which contains all the
+                                    imports and exports related information of all states in the USA. Particularly, it
+                                    shows the different commodities that are traded, and the value (In millions of
+                                    dollars) of the trades.</li>
+                                <li>Html, CSS, JavaScript, and d3.js were used to develop the dashboard.</li>
+                            </ul>
+                        </p>
                         <hr>
                     </div>
+                    <div class="w3-container">
+                        <h5 class="w3-opacity"><b>Object Detection and anonymizing</b></h5>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Oct 2020 - Dec
+                            2020</h6>
+                        <p>
+                            <ul>
+                                <li>Developed a custom-built Deep Convolutional Neural Network model to detect the
+                                    person wearing a cap and hiding the identity of only that unique person wearing a
+                                    cap. To read, process, and anonymize images Computer Vision Library (OpenCV) was
+                                    used.</li>
+                            </ul>
+                        </p>
+                        <hr>
+                    </div>
+                    <div class="w3-container">
+                        <h5 class="w3-opacity"><b>Predictive Analysis Using restaurant Zomato data</b></h5>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2020 - Apr
+                            2020</h6>
+                        <p>
+                            <ul>
+                                <li>Managing and analyzing a large data of 1 GB using Spark RDD’s transformation, Spark
+                                    SQL. Performed feature selection to figure out the optimal feature set.</li>
+                                <li>Building a Model to predict how much overall rating a restaurant will get if it
+                                    starts a cuisine and the estimated amount of cost for two people. Developing a
+                                    sentiment analysis of reviews given by customers using NLP which tells whether
+                                    it is a positive or negative review.</li>
+                            </ul>
+                        </p>
+                        <hr>
+                    </div>
+                    <div class="w3-container">
+                        <h5 class="w3-opacity"><b>Dashboard of World population statistics</b></h5>
+                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2020 - Apr
+                            2020</h6>
+                        <p>
+                            <ul>
+                                <li>Explored different flat files containing hundreds of rows, cleaned, and transformed
+                                    according to my specification, and presented in a clear understandable report using
+                                    Tableau tool.</li>
+                            </ul>
+                        </p>
 
+                    </div>
                 </div>
-                <div class="w3-container w3-card w3-white">
+
+
+                <div class="w3-container w3-card w3-white" style="padding-top: 20px;" id="certificates">
                     <h2 class="w3-text-grey w3-padding-16"><i
                             class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Certificates
                     </h2>
-                    <div class="w3-container">
-                        <h5 class="w3-opacity"><b>Project 1</b></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>August 2019 -
-                            December 2020</h6>
-                        <p>To be updated</p>
-                        <hr>
-                    </div>
-                    <div class="w3-container">
-                        <h5 class="w3-opacity"><b>Project 2</b></h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>August 2013 - May
-                            2017</h6>
-                        <p>To be updated</p>
-                        <hr>
+                    <div class="w3-text-black w3-container">
+                        <ul>
+                            <li>
+                                <h5 class="w3-opacity"><b>Introduction to SQL </b><a
+                                        href="https://www.datacamp.com/statement-of-accomplishment/course/865d4c71bb845769d7839a6a312bc005daf094a5"><i
+                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
+                                </h5>
+                            </li>
+                            <li>
+                                <h5 class="w3-opacity"><a><b>Object-Oriented Programming in Python&nbsp</b></a><a
+                                        href="https://www.datacamp.com/statement-of-accomplishment/course/11454f55a002230a8bb530db6ba0e98e94864d3c"><i
+                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
+                                </h5>
+                            </li>
+                            <li>
+                                <h5 class="w3-opacity"><a><b>Introduction to Data Visualization with
+                                            Matplotlib&nbsp</b></a><a
+                                        href="https://www.datacamp.com/statement-of-accomplishment/course/02d0d154c65233886d99ffe8d741ba2f5069042e"><i
+                                            class="material-icons" style="font-size:16px;color:teal">
+                                            &#xe8f4;</i></a>
+                                </h5>
+                            </li>
+                            <li>
+                                <h5 class="w3-opacity"><a><b>Introduction to Shell&nbsp</b></a><a
+                                        href="https://www.datacamp.com/statement-of-accomplishment/course/f42f41522fd2c027b54badcb19cedb6d5c92986d"><i
+                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
+                                </h5>
+                            </li>
+                            <li>
+                                <h5 class="w3-opacity"><a><b>Writing Efficient Python Code&nbsp</b></a><a
+                                        href="https://www.datacamp.com/statement-of-accomplishment/course/777def732ef16794f7e000bde0bda3f94db64723"><i
+                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
+                                </h5>
+                            </li>
+                            <li>
+                                <h5 class="w3-opacity"><a><b>Data Science for Everyone&nbsp</b></a><a
+                                        href="https://www.datacamp.com/statement-of-accomplishment/course/d41d30c7ea9b9fd0d0bc823b8ac6ea7942996b11"><i
+                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
+                                </h5>
+                            </li>
+                            <li>
+                                <h5 class="w3-opacity"><a><b>Introduction to Data Engineering&nbsp</b></a><a
+                                        href="https://www.datacamp.com/statement-of-accomplishment/course/b24d881143662ee49ceec28cf075e8e9cd9b89ec"><i
+                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
+                                </h5>
+                            </li>
+                            <li>
+                                <h5 class="w3-opacity"><a><b>Joining Data in SQL&nbsp</b></a><a
+                                        href="https://www.datacamp.com/statement-of-accomplishment/course/08e537b855df2717e39b8d7d881deffd4099ec9d"><i
+                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
+                                </h5>
+                            </li>
+                            <li>
+                                <h5 class="w3-opacity"><a><b>Streamlined Data Ingestion with pandas&nbsp</b></a><a
+                                        href="https://www.datacamp.com/statement-of-accomplishment/course/b5b91618d89411c30a3f7ec46bdc348c48baeaa1"><i
+                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
+                                </h5>
+                            </li>
+                            <!--Linkedin courses-->
+                            <li>
+                                <h5 class="w3-opacity"><a><b>Data Science for Everyone&nbsp</b></a><a
+                                        href="https://www.google.com"><i class="material-icons"
+                                            style="font-size:16px;color:black"> &#xe8f4;</i></a>
+                                </h5>
+                            </li>
+                            <li>
+                                <h5 class="w3-opacity"><a><b>Deep Learning Face Recognition</b></a>
+                                </h5>
+                            </li>
+                            <li>
+                                <h5 class="w3-opacity"><a><b>Introduction to Deep Learning with OpenCV</b></a>
+                                </h5>
+                            </li>
+                            <li>
+                                <h5 class="w3-opacity"><a><b>Deep Learning Face Recognition</b></a>
+                                </h5>
+                            </li>
+                        </ul>
+                        <br>
+
+
                     </div>
 
                 </div>
-
-                -->
 
                 <!-- End Right Column -->
             </div>
@@ -330,11 +473,27 @@
         <a href="https://www.linkedin.com/in/sailesh-vemula/" target="_blank"><i
                 class="fa fa-linkedin w3-hover-opacity"></i></a>
         <a href="https://github.com/sailesh21" target="_blank"><i class="fa fa-github w3-hover-opacity"></i></a>
+
         </br>
         </br>
     </footer>
 
+    <script>
+        window.onscroll = function () {
+            myFunction()
+        };
 
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+            } else {
+                navbar.classList.remove("sticky");
+            }
+        }
+    </script>
 </body>
 
 </html>
