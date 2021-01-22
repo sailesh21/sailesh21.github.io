@@ -9,6 +9,7 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
@@ -29,20 +30,47 @@
 
 </head>
 
+<script>
+    function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>
+
 
 <body class="w3-light-grey">
-    <div class="w3-top w3-white w3-card" style="position: fixed;overflow: hidden;" id="navbar">
-        <a href="#" class="w3-bar-item w3-button w3-wide">Home</a>
+
+    <div class="w3-top w3-white w3-card  " style="position: fixed;overflow: hidden;" id="
+        navbar">
+        <!--strartttt-->
+        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
+            href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i
+                class="fa fa-bars"></i></a>
+        <a href="#" class="w3-bar-item w3-button w3-wide" style="letter-spacing:4px;"><b>Home</b></a>
         <!-- Right-sided navbar links -->
-        <div class="w3-right w3-hide-small">
-            <a href="#experience" class="w3-bar-item w3-button">Experience</a>
+        <div class="w3-right w3-hide-small" style="letter-spacing:2px;">
+            <a href="#" class="w3-bar-item w3-button">Experience</a>
             <a href="#education" class="w3-bar-item w3-button">Education</a>
             <a href="#projects" class="w3-bar-item w3-button">Projects</a>
             <a href="#certificates" class="w3-bar-item w3-button"> Certificates</a>
+            <a href="#skills" class="w3-bar-item w3-button"> Skills</a>
+
         </div>
 
-    </div>
+        <!--end-->
 
+    </div>
+    <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+        <a href="#experience" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Experience</a>
+        <a href="#education" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Education</a>
+        <a href="#projects" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Projects</a>
+        <a href="#certificates" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Certificates</a>
+    </div>
     <!-- Page Container -->
     <div class="w3-content w3-margin-top" style="max-width:1400px;padding-top: 20px;" id="experience">
 
@@ -66,16 +94,16 @@
                                 class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>vlvsailesh21@gmail.com
                         </p>
                         <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>(317) 371-4658</p>
-                        <a href="/media/Resume_Sailesh_Vemula.pdf" target="_blank"><span
+                        <a href="/media/Resume_Sailesh_Vemula.pdf" target="_blank" id="skills"><span
                                 class="w3-tag w3-teal w3-round">Resume
                             </span></a>
 
                         <hr>
 
-                        <p class="w3-large"><b><i
-                                    class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Skills</b></p>
+                        <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Top
+                                Skills</b></p>
                         <div class="w3-light-grey w3-round-xlarge w3-medium">
-                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:90%">Python
+                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:93%">Python
                                 Programming</div>
                         </div>
                         <!-- <p>Adobe Photoshop</p>
@@ -90,26 +118,38 @@
                         </div>
                         <p></p>
                         <div class="w3-light-grey w3-round-xlarge w3-medium">
-                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:80%">
+                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:75%">
+                                <div class="w3-center w3-text-white">Deep Learning</div>
+                            </div>
+                        </div>
+                        <p></p>
+                        <div class="w3-light-grey w3-round-xlarge w3-medium">
+                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:75%">
                                 <div class="w3-center w3-text-white">R Programming</div>
                             </div>
                         </div>
                         <p></p>
                         <div class="w3-light-grey w3-round-xlarge w3-medium">
-                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:80%">
+                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:90%">
                                 <div class="w3-center w3-text-white">Tableau</div>
                             </div>
                         </div>
                         <p></p>
                         <div class="w3-light-grey w3-round-xlarge w3-medium">
-                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:80%">
+                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:85%">
                                 <div class="w3-center w3-text-white">Power BI</div>
                             </div>
                         </div>
                         <p></p>
                         <div class="w3-light-grey w3-round-xlarge w3-medium">
-                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:80%">
+                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:81%">
                                 <div class="w3-center w3-text-white">Spark</div>
+                            </div>
+                        </div>
+                        <p></p>
+                        <div class="w3-light-grey w3-round-xlarge w3-medium">
+                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:80%">
+                                <div class="w3-center w3-text-white">Hadoop Ecosystem</div>
                             </div>
                         </div>
                         <br>
@@ -288,7 +328,10 @@
                             class="fa fa-folder-open fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Projects</h2>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><b>Gender Classification and Age Estimation using Convolutional Neural
-                                Networks</b></h5>
+                                Networks</b>&nbsp;<a
+                                href="https://github.com/SaiGanesh26/Gender-Classification-Age-Estimation"><i
+                                    class="material-icons" style="font-size:20px;color:teal">
+                                    &#xe8a0;</i></a></h5>
                         <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Sep 2020 -
                             Dec 2020</h6>
                         <p>
@@ -322,7 +365,10 @@
                         <hr>
                     </div>
                     <div class="w3-container">
-                        <h5 class="w3-opacity"><b>Object Detection and anonymizing</b></h5>
+                        <h5 class="w3-opacity"><b>Object Detection and anonymizing</b>&nbsp;<a
+                                href="https://github.com/sailesh21/object_detection_anonymizing"><i
+                                    class="material-icons" style="font-size:20px;color:teal">
+                                    &#xe8a0;</i></a></h5>
                         <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Oct 2020 - Dec
                             2020</h6>
                         <p>
@@ -336,7 +382,10 @@
                         <hr>
                     </div>
                     <div class="w3-container">
-                        <h5 class="w3-opacity"><b>Predictive Analysis Using restaurant Zomato data</b></h5>
+                        <h5 class="w3-opacity"><b>Predictive Analysis Using restaurant Zomato data</b>&nbsp;<a
+                                href="https://github.com/sailesh21/restaurant_rate_prediction"><i class="material-icons"
+                                    style="font-size:20px;color:teal">
+                                    &#xe8a0;</i></a></h5>
                         <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2020 - Apr
                             2020</h6>
                         <p>
@@ -352,7 +401,11 @@
                         <hr>
                     </div>
                     <div class="w3-container">
-                        <h5 class="w3-opacity"><b>Dashboard of World population statistics</b></h5>
+                        <h5 class="w3-opacity"><b>Dashboard of World population statistics</b>&nbsp;<a
+                                href="https://app.powerbi.com/view?r=eyJrIjoiNGI1OGZlZGUtZjBmOS00YzliLTkzOGItMjczMjhmYjZiYzQ0IiwidCI6IjExMTNiZTM0LWFlZDEtNGQwMC1hYjRiLWNkZDAyNTEwYmU5MSIsImMiOjN9&pageName=ReportSection9580f50fe94d70bce3e0"
+                                target="_blank" rel="noopener noreferrer"><i class="material-icons"
+                                    style="font-size:20px;color:teal">
+                                    &#xe8a0;</i></a></h5>
                         <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2020 - Apr
                             2020</h6>
                         <p>
@@ -433,7 +486,7 @@
                             <li>
                                 <h5 class="w3-opacity"><a><b>Data Science for Everyone&nbsp;</b></a><a href="/media/cerificates/Datascience for everyone_datacamp_completion
                                         certificate.pdf" target="_blank" rel="noopener noreferrer"><i
-                                            class="material-icons" style="font-size:16px;color:black"> &#xe8f4;</i></a>
+                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
                                 </h5>
                             </li>
                             <li>
