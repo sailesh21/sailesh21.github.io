@@ -10,9 +10,15 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inter:400,500,600,700|Roboto:300,400,500'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         html,
         body,
         h1,
@@ -21,7 +27,301 @@
         h4,
         h5,
         h6 {
-            font-family: "Roboto", sans-serif
+            font-family: "Inter", "Roboto", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #f0f3f7 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+            color: #2c3e50;
+        }
+
+        /* Professional navbar styling */
+        .navbar-custom {
+            background: #ffffff !important;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
+            border-bottom: 1px solid #e8ecf1 !important;
+        }
+
+        .navbar-custom .w3-bar-item {
+            font-weight: 500;
+            color: #2c3e50 !important;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-custom .w3-bar-item:hover {
+            background-color: #f0f3f7 !important;
+            color: #0ea5a0 !important;
+        }
+
+        /* Card styling with depth */
+        .card-professional {
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none !important;
+            background: #ffffff !important;
+        }
+
+        .card-professional:hover {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+        }
+
+        /* Typography improvements */
+        h2 {
+            font-weight: 700 !important;
+            font-size: 1.8rem !important;
+            color: #1a202c !important;
+            letter-spacing: -0.5px;
+        }
+
+        h5 {
+            font-weight: 600 !important;
+            font-size: 1.1rem !important;
+            color: #2c3e50 !important;
+        }
+
+        h6 {
+            font-weight: 500 !important;
+            color: #0ea5a0 !important;
+        }
+
+        p {
+            font-weight: 400;
+            line-height: 1.7;
+            color: #475569;
+        }
+
+        li {
+            margin-bottom: 0.8rem;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        /* Section styling */
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            gap: 1rem;
+        }
+
+        .section-header i {
+            color: #0ea5a0 !important;
+        }
+
+        /* Tag styling */
+        .tag-skill {
+            background-color: #0ea5a0 !important;
+            border-radius: 20px;
+            padding: 0.4rem 1.2rem !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: inline-block;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+
+        .tag-skill:hover {
+            background-color: #0d9b96 !important;
+            box-shadow: 0 4px 12px rgba(14, 165, 160, 0.3);
+        }
+
+        /* Skill bars with better styling */
+        .skill-bar-container {
+            margin-bottom: 1rem;
+        }
+
+        .skill-bar-label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .skill-bar-bg {
+            background-color: #e8ecf1 !important;
+            border-radius: 10px;
+            height: 28px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            background: linear-gradient(90deg, #0ea5a0 0%, #05b199 100%) !important;
+            height: 100%;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            font-size: 0.9rem;
+            transition: width 0.4s ease;
+        }
+
+        /* Profile card styling */
+        .profile-card {
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .profile-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .profile-name-overlay h2 {
+            color: white !important;
+            font-size: 1.9rem;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        /* Contact info styling */
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin: 0.8rem 0;
+            padding: 0.5rem 0;
+            color: #475569;
+        }
+
+        .contact-item i {
+            color: #0ea5a0 !important;
+            margin-right: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Experience section */
+        .experience-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .experience-tag {
+            background-color: #0ea5a0 !important;
+            color: white !important;
+            padding: 0.4rem 0.8rem !important;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .experience-company {
+            font-weight: 600;
+            color: #1a202c;
+        }
+
+        .experience-date {
+            color: #0ea5a0;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* Overview section */
+        .overview-content ul {
+            list-style-position: inside;
+            padding-left: 0;
+        }
+
+        .overview-content li {
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            text-indent: -1rem;
+        }
+
+        /* HR styling */
+        hr {
+            border: none;
+            border-top: 1px solid #e8ecf1;
+            margin: 1.5rem 0 !important;
+        }
+
+        /* Footer styling */
+        footer {
+            background: linear-gradient(135deg, #0ea5a0 0%, #0d9b96 100%) !important;
+            padding: 2.5rem 1rem !important;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        footer p {
+            color: white;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        footer a i {
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover i {
+            color: #c0f9f7;
+            transform: scale(1.1);
+        }
+
+        /* Project section */
+        .project-title {
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+        }
+
+        .project-link {
+            color: #0ea5a0;
+            margin-left: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #0d9b96;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            h2 {
+                font-size: 1.5rem !important;
+            }
+
+            .profile-header {
+                height: 240px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Focus styles for accessibility */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid #0ea5a0;
+            outline-offset: 2px;
         }
     </style>
     <link rel="icon" type="image/jpg" href="media/profile_pic_icon_crop.jpg">
@@ -44,26 +344,18 @@
 
 <body class="w3-light-grey">
 
-    <div class="w3-top w3-white w3-card  " style="position: fixed;overflow: hidden;" id="
-        navbar">
-        <!--strartttt-->
+    <div class="w3-top navbar-custom" style="position: fixed;overflow: hidden;width: 100%;z-index: 1000;" id="navbar">
         <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
             href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i
                 class="fa fa-bars"></i></a>
-        <a href="#" class="w3-bar-item w3-button w3-wide" style="letter-spacing:4px;"><b>Home</b></a>
+        <a href="#" class="w3-bar-item w3-button w3-wide" style="letter-spacing:2px;font-weight:700;color:#0ea5a0!important;font-size:1.1rem;">SV</a>
         <!-- Right-sided navbar links -->
-        <div class="w3-right w3-hide-small" style="letter-spacing:2px;">
-            <a href="#" class="w3-bar-item w3-button">Experience</a>
+        <div class="w3-right w3-hide-small" style="letter-spacing:0.5px;">
+            <a href="#experience" class="w3-bar-item w3-button">Experience</a>
             <a href="#education" class="w3-bar-item w3-button">Education</a>
             <a href="#projects" class="w3-bar-item w3-button">Projects</a>
-            <!-- <a href="#certificates" class="w3-bar-item w3-button"> Certificates</a> -->
-            <a href="#skills" class="w3-bar-item w3-button"> Skills</a>
-            <a href="#contact" class="w3-bar-item w3-button"> Contact </a>
-
+            <a href="#contact" class="w3-bar-item w3-button">Contact</a>
         </div>
-
-        <!--end-->
-
     </div>
     <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
     <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
@@ -82,109 +374,121 @@
             <!-- Left Column -->
             <div class="w3-third">
 
-                <div class="w3-white w3-text-black w3-card-4">
-                    <div class="w3-display-container">
-                        <img src="/media/profile_pic.jpg" style="width:100%" alt="Avatar">
-                        <div class="w3-display-bottomleft w3-container w3-text-white">
+                <div class="w3-white w3-text-black card-professional" style="border-radius: 12px; overflow: hidden;">
+                    <div class="w3-display-container profile-header">
+                        <img src="/media/profile_pic.jpg" style="width:100%; height: 280px; object-fit: cover;" alt="Avatar">
+                        <div class="profile-name-overlay">
                             <h2>Sailesh Vemula</h2>
                         </div>
                     </div>
-                    <div class="w3-container">
-                        <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Senior Data Engineer</p>
-                        <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Austin, Texas,
-                            US</p>
-                        <p><i
-                                class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>vlvsailesh21@gmail.com
-                        </p>
-                        <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>(317) 371-4658</p>
-                        <a href="/media/Resume_Sailesh_Vemula.pdf" target="_blank" id="skills"><span
-                                class="w3-tag w3-teal w3-round">Resume
-                            </span></a>
+                    <div class="w3-container" style="padding: 1.5rem;">
+                        <div class="contact-item">
+                            <i class="fa fa-briefcase fa-fw"></i>
+                            <span>Senior Data Engineer</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa fa-map-marker fa-fw"></i>
+                            <span>Austin, Texas, US</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa fa-envelope fa-fw"></i>
+                            <span>vlvsailesh21@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa fa-phone fa-fw"></i>
+                            <span>(317) 371-4658</span>
+                        </div>
+                        <div style="margin-top: 1rem; margin-bottom: 1rem;">
+                            <a href="/media/Resume_Sailesh_Vemula.pdf" target="_blank">
+                                <span class="tag-skill" style="background-color: #0ea5a0 !important;">Download Resume</span>
+                            </a>
+                        </div>
 
                         <hr>
 
-                        <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>
-                                Skills</b></p>
-                        <div class="w3-light-grey w3-round-xlarge w3-medium">
-                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:93%"> Python </div>
-                        </div>
-                        <p></p>
-                        <div class="w3-light-grey w3-round-xlarge w3-medium">
-                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:90%">
-                                <div class="w3-center w3-text-white"> SQL/PostgreSQL </div>
+                        <p style="font-weight: 700; margin-bottom: 1rem; color: #1a202c;"><i class="fa fa-star fa-fw w3-margin-right" style="color: #0ea5a0;"></i>Skills</p>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-label">Python</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width:93%">93%</div>
                             </div>
                         </div>
-                        <p></p>
-                        <div class="w3-light-grey w3-round-xlarge w3-medium">
-                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:90%">
-                                <div class="w3-center w3-text-white"> PySpark </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-label">SQL/PostgreSQL</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width:90%">90%</div>
                             </div>
                         </div>
-                        <p></p>
-                        <div class="w3-light-grey w3-round-xlarge w3-medium">
-                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:85%">
-                                <div class="w3-center w3-text-white"> Airflow </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-label">PySpark</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width:90%">90%</div>
                             </div>
                         </div>
-                        <p></p>
-                        <div class="w3-light-grey w3-round-xlarge w3-medium">
-                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:90%">
-                                <div class="w3-center w3-text-white"> Git/GitCLI </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-label">Airflow</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width:85%">85%</div>
                             </div>
                         </div>
-                        <p></p>
-                        <div class="w3-light-grey w3-round-xlarge w3-medium">
-                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:65%">
-                                <div class="w3-center w3-text-white"> Machine Learning </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-label">Git/GitCLI</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width:90%">90%</div>
                             </div>
                         </div>
-                        <p></p>
-                        <div class="w3-light-grey w3-round-xlarge w3-medium">
-                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:90%">
-                                <div class="w3-center w3-text-white"> Tableau </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-label">Machine Learning</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width:65%">65%</div>
                             </div>
                         </div>
-                        <p></p>
-                        <div class="w3-light-grey w3-round-xlarge w3-medium">
-                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:85%">
-                                <div class="w3-center w3-text-white"> Power BI </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-label">Tableau</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width:90%">90%</div>
                             </div>
                         </div>
-                        <p></p>
-                        <div class="w3-light-grey w3-round-xlarge w3-medium">
-                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:80%">
-                                <div class="w3-center w3-text-white"> Hadoop Ecosystem </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-label">Power BI</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width:85%">85%</div>
                             </div>
                         </div>
-                        <p></p>
-                        <div class="w3-light-grey w3-round-xlarge w3-medium">
-                            <div class="w3-container w3-center w3-round-xlarge w3-teal" style="width:70%">
-                                <div class="w3-center w3-text-white"> AWS </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-label">Hadoop Ecosystem</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width:80%">80%</div>
                             </div>
                         </div>
-                        <br>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-label">AWS</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width:70%">70%</div>
+                            </div>
+                        </div>
 
-                        <p class="w3-large w3-text-theme"><b><i
-                                    class="fa fa-globe fa-fw w3-margin-right w3-text-teal"></i>Languages</b></p>
-                        <p></p>
-                        <div class="w3-light-grey w3-round-xlarge">
-                            <div class="w3-round-xlarge w3-teal" style="height:24px;width:100%">
-                                <div class="w3-center w3-text-white">English</div>
+                        <hr>
+
+                        <p style="font-weight: 700; margin-bottom: 1rem; color: #1a202c;"><i class="fa fa-globe fa-fw w3-margin-right" style="color: #0ea5a0;"></i>Languages</p>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-label">English</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width:100%">Fluent</div>
                             </div>
                         </div>
-                        <p></p>
-                        <div class="w3-light-grey w3-round-xlarge">
-                            <div class="w3-round-xlarge w3-teal" style="height:24px;width:100%">
-                                <div class="w3-center w3-text-white">Telugu</div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-label">Telugu</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width:100%">Fluent</div>
                             </div>
                         </div>
-                        <p></p>
-                        <div class="w3-light-grey w3-round-xlarge">
-                            <div class="w3-round-xlarge w3-teal" style="height:24px;width:60%">
-                                <div class="w3-center w3-text-white">Hindi</div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-label">Hindi</div>
+                            <div class="skill-bar-bg">
+                                <div class="skill-bar-fill" style="width:60%">60%</div>
                             </div>
                         </div>
-                        <br>
                     </div>
                 </div><br>
 
@@ -193,30 +497,29 @@
 
             <!-- Right Column -->
             <div class="w3-twothird">
-                <div class="w3-container w3-card w3-white w3-margin-bottom" style="padding-top: 20px;" id="overview">
-                    <h2 class="w3-text-grey w3-padding-16"><i
-                            class="fas fa-book-open fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><b> Overview </b></h2>
-                    <div class="w3-container">
-                        <h5 class="w3-opacity" style="display: flex;align-items: center;">
-                            <!-- <b> -->
-                                <ul>
-                                <li>Innovative Data Engineer with 6+ years of experience designing, building, and optimizing large-scale, high-availability data platforms across AWS, Azure, and hybrid cloud environments.</li>
-                                <li>Expert in developing real-time streaming pipelines, ETL/ELT frameworks, and analytics solutions using PySpark, Python, SQL, Apache Kafka, Apache Flink, AWS Glue, Redshift, and Snowflake.</li>
-                                <li>Proven ability to handle multi-terabyte workloads daily, integrating diverse data sources into governed lakes and warehouses to enable predictive analytics, machine learning, and BI reporting.</li>
-                                <li>Skilled in data modeling, Iceberg/Delta Lake table management, query optimization, and implementing cost-efficient, performance-driven architectures that reduce processing latency from hours to minutes.</li>
-                                <li>Adept at modern DataOps, CI/CD, and cloud-native best practices, ensuring secure, scalable, and compliant data ecosystems.</li>
-                                <li>Committed to delivering data solutions that accelerate decision-making across enterprises.</li>
-                               </ul>
-                            <!-- </b> -->
-                        </h5>
-                        <hr>
+                <div class="w3-container w3-card w3-white w3-margin-bottom card-professional" style="padding: 2rem;" id="overview">
+                    <div class="section-header">
+                        <i class="fas fa-book-open fa-fw w3-xxlarge"></i>
+                        <h2 style="margin: 0;">Overview</h2>
+                    </div>
+                    <div class="overview-content">
+                        <ul>
+                            <li>Innovative Data Engineer with 6+ years of experience designing, building, and optimizing large-scale, high-availability data platforms across AWS, Azure, and hybrid cloud environments.</li>
+                            <li>Expert in developing real-time streaming pipelines, ETL/ELT frameworks, and analytics solutions using PySpark, Python, SQL, Apache Kafka, Apache Flink, AWS Glue, Redshift, and Snowflake.</li>
+                            <li>Proven ability to handle multi-terabyte workloads daily, integrating diverse data sources into governed lakes and warehouses to enable predictive analytics, machine learning, and BI reporting.</li>
+                            <li>Skilled in data modeling, Iceberg/Delta Lake table management, query optimization, and implementing cost-efficient, performance-driven architectures that reduce processing latency from hours to minutes.</li>
+                            <li>Adept at modern DataOps, CI/CD, and cloud-native best practices, ensuring secure, scalable, and compliant data ecosystems.</li>
+                            <li>Committed to delivering data solutions that accelerate decision-making across enterprises.</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="w3-container w3-card w3-white w3-margin-bottom">
-                    <h2 class="w3-text-grey w3-padding-16"><i
-                            class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Work Experience
-                    </h2>
-                    <div class="w3-container">
+                
+                <div class="w3-container w3-card w3-white w3-margin-bottom card-professional" style="padding: 2rem;">
+                    <div class="section-header">
+                        <i class="fa fa-suitcase fa-fw w3-xxlarge"></i>
+                        <h2 style="margin: 0;">Work Experience</h2>
+                    </div>
+                    <div class="w3-container" style="padding: 0;">
                         <h5 class="w3-opacity"><b><span class="w3-tag w3-teal w3-round">Data Engineer
                                 </span> - Amazon </b>
                         </h5>
@@ -247,7 +550,6 @@
                                     this raised overall data quality from 88% to 98%, eliminating errors that previously impacted downstream systems.</li>
                                 <li>ETL throughput scaled further after tuning PySpark partitioning, job parallelism, and caching in 
                                     AWS Glue, which cut large-volume job runtimes by 30% and increased the speed of workforce analytics delivery.</li>
-                                <li></li>                                
                                 <!-- <li><b> Fluid –</b>Spearheaded the development of Fluid, a data-driven product
                                     optimizing workforce management:</li>
                                 <div class="w3=container">
@@ -450,85 +752,69 @@
                         </h6>
                         <p>
                             <ul>
-                                <li>Automated data ingestion processes by building Python-based SSIS jobs, which reduced a
-                                     2+ hour manual workload to minutes and ensured on-time availability of operational datasets.</li>
-                                <li>Delivered dynamic Power BI and Tableau dashboards that pulled live metrics from SQL Server, 
-                                    cutting manual reporting by 80% and improving KPI visibility for leadership teams.</li>
-                                <li>Leveraged PySpark with SparkML on Hadoop clusters to develop forecasting models, boosting 
-                                    demand planning accuracy by 20% and optimizing client inventory strategies.</li>
-                                <li>Engineered high-availability ETL pipelines on Databricks Delta Lake orchestrated via 
-                                    Apache Airflow, keeping analytics workloads operational with 99.9% uptime during peak usage.</li>
-                                <li>Cut SQL Server query execution times by 60% through careful tuning of indexes, stored 
-                                    procedures, and partition strategies, enabling faster data retrieval for analytics users.</li>
-                                <li>Consolidated multiple data sources, including flat files, APIs, and relational systems, 
-                                    into a centralized SQL Server data mart, streamlining reporting across diverse business units.</li>
-                                <li>Partnered with cross-functional teams to design real-time drill-down dashboards, translating 
-                                    complex operational needs into scalable, interactive BI solutions.</li>
-                                <li>Introduced reusable Python modules for validation and transformation, improving 
-                                    dataset reliability by 25% and reducing reprocessing caused by data quality issues.</li>
+                                <li>Automated data ingestion processes by building Python-based SSIS jobs, reducing a 2+ hour manual workload to minutes.</li>
+                                <li>Delivered dynamic Power BI and Tableau dashboards pulling live metrics from SQL Server, cutting manual reporting by 80%.</li>
+                                <li>Leveraged PySpark with SparkML on Hadoop clusters to develop forecasting models, boosting demand planning accuracy by 20%.</li>
+                                <li>Engineered high-availability ETL pipelines on Databricks Delta Lake orchestrated via Apache Airflow with 99.9% uptime.</li>
+                                <li>Cut SQL Server query execution times by 60% through index tuning and partition strategies.</li>
+                                <li>Consolidated multiple data sources into a centralized SQL Server data mart, streamlining reporting across business units.</li>
+                                <li>Designed real-time drill-down dashboards, translating operational needs into scalable BI solutions.</li>
+                                <li>Introduced reusable Python modules for validation, improving dataset reliability by 25%.</li>
                             </ul>
                         </p>
                     </div>
                 </div>
 
-                <div class="w3-container w3-card w3-white w3-margin-bottom" style="padding-top: 20px;" id="education">
-                    <h2 class="w3-text-grey w3-padding-16"><i
-                            class="fas fa-book-open fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Education</h2>
-                    <div class="w3-container">
-                        <h5 class="w3-opacity" style="display: flex;align-items: center;">
-                            <b>Indiana University</b>
-                            <p class="w3-text-teal" style="margin-left: 13px;">Grade :- 3.9
-                            </p>
-                        </h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>August 2019 -
-                            December 2020</h6>
-                        <p>Master's in Data Science</p>
+                <div class="w3-container w3-card w3-white w3-margin-bottom card-professional" style="padding: 2rem;" id="education">
+                    <div class="section-header">
+                        <i class="fas fa-graduation-cap fa-fw w3-xxlarge"></i>
+                        <h2 style="margin: 0;">Education</h2>
+                    </div>
+                    <div class="w3-container" style="padding: 0;">
+                        <div style="margin-bottom: 1.5rem;">
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <h5 style="margin: 0;">Indiana University</h5>
+                                <p class="experience-date">GPA: 3.9</p>
+                            </div>
+                            <h6 class="experience-date"><i class="fa fa-calendar fa-fw w3-margin-right"></i>August 2019 - December 2020</h6>
+                            <p style="margin-top: 0.5rem;">Master's in Data Science</p>
+                        </div>
                         <hr>
-                    </div>
-                    <div class="w3-container">
-                        <h5 class="w3-opacity" style="display: flex;align-items: center;"><b>Jawaharlal Nehru
-                                Technological University, Kakinada</b>
-                            <p class="w3-text-teal" style="margin-left: 13px;">Grade :- 7.87
-                            </p>
-                        </h5>
-                        <h6 class=" w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>August 2013 - May
-                            2017</h6>
-                        <p>Bachelor's Degree in Electronics and Communication Engineering</p>
-                        <br>
-                    </div>
 
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                                <h5 style="margin: 0;">Jawaharlal Nehru Technological University, Kakinada</h5>
+                                <p class="experience-date">GPA: 7.87</p>
+                            </div>
+                            <h6 class="experience-date"><i class="fa fa-calendar fa-fw w3-margin-right"></i>August 2013 - May 2017</h6>
+                            <p style="margin-top: 0.5rem;">Bachelor's Degree in Electronics and Communication Engineering</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="w3-container w3-card w3-white w3-margin-bottom" style="padding: 20px ;" id="projects">
-                    <h2 class="w3-text-grey w3-padding-16"><i
-                            class="fa fa-folder-open fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Personal
-                        Projects</h2>
+
+                <div class="w3-container w3-card w3-white w3-margin-bottom card-professional" style="padding: 2rem;" id="projects">
+                    <div class="section-header">
+                        <i class="fa fa-folder-open fa-fw w3-xxlarge"></i>
+                        <h2 style="margin: 0;">Personal Projects</h2>
+                    </div>
                     <div class="w3-container">
-                        <h5 class="w3-opacity"><b>Gender Classification and Age Estimation using Convolutional Neural
-                                Networks</b>&nbsp;<a
-                                href="https://github.com/SaiGanesh26/Gender-Classification-Age-Estimation"><i
-                                    class="material-icons" style="font-size:20px;color:teal">
-                                    &#xe8a0;</i></a></h5>
-                        <!-- <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Sep 2020 -
-                            Dec 2020</h6> -->
+                        <h5 class="w3-opacity"><b>Gender Classification and Age Estimation using CNN</b>
+                                <a href="https://github.com/SaiGanesh26/Gender-Classification-Age-Estimation" target="_blank" class="project-link">
+                                    <i class="fa fa-external-link"></i></a></h5>
                         <p>
                             <ul>
                                 <li>Developed a Deep Learning Model that used more than 5 GB of image dataset to predict
-                                    the
-                                    person’s gender and age group and annotate over the image or live webcam feed or
+                                    the person’s gender and age group and annotate over the image or live webcam feed or
                                     recorded video.</li>
                                 <li>Worked on Deep Learning Libraries (TensorFlow, Keras), Graphical Processing Unit,
-                                    Computer
-                                    Vision Library (OpenCV), and Jupyter Notebook for developing the model.</li>
+                                    Computer Vision Library (OpenCV), and Jupyter Notebook for developing the model.</li>
                             </ul>
                         </p>
                         <hr>
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><b>Data Visualization of US Foreign Trade Statistics</b>&nbsp;<a
-                                href="/project2/"><i class="material-icons" style="font-size:20px;color:teal">
-                                    &#xe8a0;</i></a></h5>
-                        <!-- <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Sep 2020 - Dec
-                            2020</h6> -->
+                                href="/project2/" target="_blank" class="project-link"><i class="fa fa-external-link"></i></a></h5>
                         <p>
                             <ul>
                                 <li>Ingested and cleansed US Census trade datasets containing imports and exports across all states, ensuring consistency in commodity codes, units, and valuation metrics for downstream analytics.</li>
@@ -540,9 +826,7 @@
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><b>Object Detection and anonymizing</b>&nbsp;<a
-                                href="https://github.com/sailesh21/object_detection_anonymizing"><i
-                                    class="material-icons" style="font-size:20px;color:teal">
-                                    &#xe8a0;</i></a></h5>
+                                href="https://github.com/sailesh21/object_detection_anonymizing" target="_blank" class="project-link"><i class="fa fa-external-link"></i></a></h5>
                         <!-- <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Oct 2020 - Dec
                             2020</h6> -->
                         <p>
@@ -557,9 +841,7 @@
                     </div>
                     <div class="w3-container">
                         <h5 class="w3-opacity"><b>Predictive Analysis Using restaurant Zomato data</b>&nbsp;<a
-                                href="https://github.com/sailesh21/restaurant_rate_prediction"><i class="material-icons"
-                                    style="font-size:20px;color:teal">
-                                    &#xe8a0;</i></a></h5>
+                                href="https://github.com/sailesh21/restaurant_rate_prediction" target="_blank" class="project-link"><i class="fa fa-external-link"></i></a></h5>
                         <!-- <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2020 - Apr
                             2020</h6> -->
                         <p>
@@ -574,9 +856,7 @@
                     <div class="w3-container">
                         <h5 class="w3-opacity"><b>Dashboard of World population statistics</b>&nbsp;<a
                                 href="https://app.powerbi.com/view?r=eyJrIjoiNGI1OGZlZGUtZjBmOS00YzliLTkzOGItMjczMjhmYjZiYzQ0IiwidCI6IjExMTNiZTM0LWFlZDEtNGQwMC1hYjRiLWNkZDAyNTEwYmU5MSIsImMiOjN9&pageName=ReportSection9580f50fe94d70bce3e0"
-                                target="_blank" rel="noopener noreferrer"><i class="material-icons"
-                                    style="font-size:20px;color:teal">
-                                    &#xe8a0;</i></a></h5>
+                                target="_blank" class="project-link"><i class="fa fa-external-link"></i></a></h5>
                         <!-- <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2020 - Apr
                             2020</h6> -->
                         <p>
