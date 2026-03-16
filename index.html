@@ -1,1072 +1,378 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <title>Sailesh Vemula's Portfolio</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
-    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inter:400,500,600,700|Roboto:300,400,500'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html,
-        body,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: "Inter", "Roboto", sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #f0f3f7 100%);
-            min-height: 100vh;
-            line-height: 1.6;
-            color: #2c3e50;
-        }
-
-        /* Professional navbar styling */
-        .navbar-custom {
-            background: #ffffff !important;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
-            border-bottom: 1px solid #e8ecf1 !important;
-        }
-
-        .navbar-custom .w3-bar-item {
-            font-weight: 500;
-            color: #2c3e50 !important;
-            transition: all 0.3s ease;
-        }
-
-        .navbar-custom .w3-bar-item:hover {
-            background-color: #f0f3f7 !important;
-            color: #0ea5a0 !important;
-        }
-
-        /* Card styling with depth */
-        .card-professional {
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: none !important;
-            background: #ffffff !important;
-        }
-
-        .card-professional:hover {
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-            transform: translateY(-2px);
-        }
-
-        /* Typography improvements */
-        h2 {
-            font-weight: 700 !important;
-            font-size: 1.8rem !important;
-            color: #1a202c !important;
-            letter-spacing: -0.5px;
-        }
-
-        h5 {
-            font-weight: 600 !important;
-            font-size: 1.1rem !important;
-            color: #2c3e50 !important;
-        }
-
-        h6 {
-            font-weight: 500 !important;
-            color: #0ea5a0 !important;
-        }
-
-        p {
-            font-weight: 400;
-            line-height: 1.7;
-            color: #475569;
-        }
-
-        li {
-            margin-bottom: 0.8rem;
-            color: #475569;
-            line-height: 1.8;
-        }
-
-        /* Section styling */
-        .section-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            gap: 1rem;
-        }
-
-        .section-header i {
-            color: #0ea5a0 !important;
-        }
-
-        /* Tag styling */
-        .tag-skill {
-            background-color: #0ea5a0 !important;
-            border-radius: 20px;
-            padding: 0.4rem 1.2rem !important;
-            font-weight: 500;
-            font-size: 0.95rem;
-            display: inline-block;
-            color: white !important;
-            transition: all 0.3s ease;
-        }
-
-        .tag-skill:hover {
-            background-color: #0d9b96 !important;
-            box-shadow: 0 4px 12px rgba(14, 165, 160, 0.3);
-        }
-
-        /* Skill bars with better styling */
-        .skill-bar-container {
-            margin-bottom: 1rem;
-        }
-
-        .skill-bar-label {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        .skill-bar-bg {
-            background-color: #e8ecf1 !important;
-            border-radius: 10px;
-            height: 28px;
-            overflow: hidden;
-        }
-
-        .skill-bar-fill {
-            background: linear-gradient(90deg, #0ea5a0 0%, #05b199 100%) !important;
-            height: 100%;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            color: white;
-            font-size: 0.9rem;
-            transition: width 0.4s ease;
-        }
-
-        /* Profile card styling */
-        .profile-card {
-            border-radius: 12px;
-            overflow: hidden;
-            background: white;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-        }
-
-        .profile-header {
-            position: relative;
-            height: 280px;
-            overflow: hidden;
-        }
-
-        .profile-header img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-name-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            padding: 1.5rem;
-            color: white;
-        }
-
-        .profile-name-overlay h2 {
-            color: white !important;
-            font-size: 1.9rem;
-            margin: 0;
-            font-weight: 700;
-        }
-
-        /* Contact info styling */
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin: 0.8rem 0;
-            padding: 0.5rem 0;
-            color: #475569;
-        }
-
-        .contact-item i {
-            color: #0ea5a0 !important;
-            margin-right: 1rem;
-            font-size: 1.1rem;
-        }
-
-        /* Experience section */
-        .experience-header {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .experience-tag {
-            background-color: #0ea5a0 !important;
-            color: white !important;
-            padding: 0.4rem 0.8rem !important;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .experience-company {
-            font-weight: 600;
-            color: #1a202c;
-        }
-
-        .experience-date {
-            color: #0ea5a0;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-
-        /* Overview section */
-        .overview-content ul {
-            list-style-position: inside;
-            padding-left: 0;
-        }
-
-        .overview-content li {
-            margin-bottom: 1rem;
-            padding-left: 1rem;
-            text-indent: -1rem;
-        }
-
-        /* HR styling */
-        hr {
-            border: none;
-            border-top: 1px solid #e8ecf1;
-            margin: 1.5rem 0 !important;
-        }
-
-        /* Footer styling */
-        footer {
-            background: linear-gradient(135deg, #0ea5a0 0%, #0d9b96 100%) !important;
-            padding: 2.5rem 1rem !important;
-            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        footer p {
-            color: white;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-        }
-
-        footer a i {
-            color: white !important;
-            transition: all 0.3s ease;
-        }
-
-        footer a:hover i {
-            color: #c0f9f7;
-            transform: scale(1.1);
-        }
-
-        /* Project section */
-        .project-title {
-            font-weight: 700;
-            color: #1a202c;
-            margin-bottom: 0.5rem;
-            font-size: 1.15rem;
-        }
-
-        .project-link {
-            color: #0ea5a0;
-            margin-left: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .project-link:hover {
-            color: #0d9b96;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 992px) {
-            h2 {
-                font-size: 1.5rem !important;
-            }
-
-            .profile-header {
-                height: 240px;
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Focus styles for accessibility */
-        a:focus-visible,
-        button:focus-visible {
-            outline: 2px solid #0ea5a0;
-            outline-offset: 2px;
-        }
-    </style>
-    <link rel="icon" type="image/jpg" href="media/profile_pic_icon_crop.jpg">
-
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sailesh Vemula | Senior Data Engineer</title>
+  <meta
+    name="description"
+    content="Portfolio of Sailesh Vemula, Senior Data Engineer specializing in AWS, Azure, PySpark, ETL/ELT platforms, streaming systems, and analytics engineering."
+  >
+  <link rel="stylesheet" href="styles.css">
 </head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <span class="brand-mark">SV</span>
+        <span class="brand-copy">
+          <strong>Sailesh Vemula</strong>
+          <span>Senior Data Engineer</span>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#summary">Summary</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-<script>
-    function myFunction() {
-        var x = document.getElementById("navDemo");
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-        } else {
-            x.className = x.className.replace(" w3-show", "");
-        }
-    }
-</script>
+    <main id="top">
+      <section class="hero">
+        <article class="profile-photo-card">
+          <div class="photo-accent photo-accent-top"></div>
+          <div class="photo-accent photo-accent-bottom"></div>
+          <div class="photo-card-copy">
+            <p class="photo-name-line">Sailesh</p>
+            <p class="photo-name-line">Vemula</p>
+            <p class="photo-role">Senior Data Engineer</p>
+            <span class="photo-rule"></span>
+          </div>
+          <img class="profile-photo" src="./media/Sailesh_PP.jpeg" alt="Portrait of Sailesh Vemula">
+          <div class="photo-footer">
+            <span>Austin, TX | AWS </span>
+          </div>
+        </article>
 
-
-<body class="w3-light-grey">
-
-    <div class="w3-top navbar-custom" style="position: fixed;overflow: hidden;width: 100%;z-index: 1000;" id="navbar">
-        <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
-            href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i
-                class="fa fa-bars"></i></a>
-        <a href="#" class="w3-bar-item w3-button w3-wide" style="letter-spacing:2px;font-weight:700;color:#0ea5a0!important;font-size:1.1rem;">SV</a>
-        <!-- Right-sided navbar links -->
-        <div class="w3-right w3-hide-small" style="letter-spacing:0.5px;">
-            <a href="#experience" class="w3-bar-item w3-button">Experience</a>
-            <a href="#education" class="w3-bar-item w3-button">Education</a>
-            <a href="#projects" class="w3-bar-item w3-button">Projects</a>
-            <a href="#contact" class="w3-bar-item w3-button">Contact</a>
-        </div>
-    </div>
-    <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
-    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-        <a href="#experience" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Experience</a>
-        <a href="#education" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Education</a>
-        <a href="#projects" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Projects</a>
-        <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Contact</a>
-        <!-- <a href="#certificates" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Certificates</a> -->
-    </div>
-    <!-- Page Container -->
-    <div class="w3-content w3-margin-top" style="max-width:1400px;padding-top: 20px;" id="experience">
-
-        <!-- The Grid -->
-        <div class="w3-row-padding">
-
-            <!-- Left Column -->
-            <div class="w3-third">
-
-                <div class="w3-white w3-text-black card-professional" style="border-radius: 12px; overflow: hidden;">
-                    <div class="w3-display-container profile-header">
-                        <img src="/media/profile_pic.jpg" style="width:100%; height: 280px; object-fit: cover;" alt="Avatar">
-                        <div class="profile-name-overlay">
-                            <h2>Sailesh Vemula</h2>
-                        </div>
-                    </div>
-                    <div class="w3-container" style="padding: 1.5rem;">
-                        <div class="contact-item">
-                            <i class="fa fa-briefcase fa-fw"></i>
-                            <span>Senior Data Engineer</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fa fa-map-marker fa-fw"></i>
-                            <span>Austin, Texas, US</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fa fa-envelope fa-fw"></i>
-                            <span>vlvsailesh21@gmail.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fa fa-phone fa-fw"></i>
-                            <span>(317) 371-4658</span>
-                        </div>
-                        <div style="margin-top: 1rem; margin-bottom: 1rem;">
-                            <a href="/media/Resume_Sailesh_Vemula.pdf" target="_blank">
-                                <span class="tag-skill" style="background-color: #0ea5a0 !important;">Download Resume</span>
-                            </a>
-                        </div>
-
-                        <hr>
-
-                        <p style="font-weight: 700; margin-bottom: 1rem; color: #1a202c;"><i class="fa fa-star fa-fw w3-margin-right" style="color: #0ea5a0;"></i>Skills</p>
-                        <div class="skill-bar-container">
-                            <div class="skill-bar-label">Python</div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" style="width:93%">93%</div>
-                            </div>
-                        </div>
-                        <div class="skill-bar-container">
-                            <div class="skill-bar-label">SQL/PostgreSQL</div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" style="width:90%">90%</div>
-                            </div>
-                        </div>
-                        <div class="skill-bar-container">
-                            <div class="skill-bar-label">PySpark</div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" style="width:90%">90%</div>
-                            </div>
-                        </div>
-                        <div class="skill-bar-container">
-                            <div class="skill-bar-label">Airflow</div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" style="width:85%">85%</div>
-                            </div>
-                        </div>
-                        <div class="skill-bar-container">
-                            <div class="skill-bar-label">Git/GitCLI</div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" style="width:90%">90%</div>
-                            </div>
-                        </div>
-                        <div class="skill-bar-container">
-                            <div class="skill-bar-label">Machine Learning</div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" style="width:65%">65%</div>
-                            </div>
-                        </div>
-                        <div class="skill-bar-container">
-                            <div class="skill-bar-label">Tableau</div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" style="width:90%">90%</div>
-                            </div>
-                        </div>
-                        <div class="skill-bar-container">
-                            <div class="skill-bar-label">Power BI</div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" style="width:85%">85%</div>
-                            </div>
-                        </div>
-                        <div class="skill-bar-container">
-                            <div class="skill-bar-label">Hadoop Ecosystem</div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" style="width:80%">80%</div>
-                            </div>
-                        </div>
-                        <div class="skill-bar-container">
-                            <div class="skill-bar-label">AWS</div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" style="width:70%">70%</div>
-                            </div>
-                        </div>
-
-                        <hr>
-
-                        <p style="font-weight: 700; margin-bottom: 1rem; color: #1a202c;"><i class="fa fa-globe fa-fw w3-margin-right" style="color: #0ea5a0;"></i>Languages</p>
-                        <div class="skill-bar-container">
-                            <div class="skill-bar-label">English</div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" style="width:100%">Fluent</div>
-                            </div>
-                        </div>
-                        <div class="skill-bar-container">
-                            <div class="skill-bar-label">Telugu</div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" style="width:100%">Fluent</div>
-                            </div>
-                        </div>
-                        <div class="skill-bar-container">
-                            <div class="skill-bar-label">Hindi</div>
-                            <div class="skill-bar-bg">
-                                <div class="skill-bar-fill" style="width:60%">60%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div><br>
-
-                <!-- End Left Column -->
-            </div>
-
-            <!-- Right Column -->
-            <div class="w3-twothird">
-                <div class="w3-container w3-card w3-white w3-margin-bottom card-professional" style="padding: 2rem;" id="overview">
-                    <div class="section-header">
-                        <i class="fas fa-book-open fa-fw w3-xxlarge"></i>
-                        <h2 style="margin: 0;">Overview</h2>
-                    </div>
-                    <div class="overview-content">
-                        <ul>
-                            <li>Innovative Data Engineer with 6+ years of experience designing, building, and optimizing large-scale, high-availability data platforms across AWS, Azure, and hybrid cloud environments.</li>
-                            <li>Expert in developing real-time streaming pipelines, ETL/ELT frameworks, and analytics solutions using PySpark, Python, SQL, Apache Kafka, Apache Flink, AWS Glue, Redshift, and Snowflake.</li>
-                            <li>Proven ability to handle multi-terabyte workloads daily, integrating diverse data sources into governed lakes and warehouses to enable predictive analytics, machine learning, and BI reporting.</li>
-                            <li>Skilled in data modeling, Iceberg/Delta Lake table management, query optimization, and implementing cost-efficient, performance-driven architectures that reduce processing latency from hours to minutes.</li>
-                            <li>Adept at modern DataOps, CI/CD, and cloud-native best practices, ensuring secure, scalable, and compliant data ecosystems.</li>
-                            <li>Committed to delivering data solutions that accelerate decision-making across enterprises.</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="w3-container w3-card w3-white w3-margin-bottom card-professional" style="padding: 2rem;">
-                    <div class="section-header">
-                        <i class="fa fa-suitcase fa-fw w3-xxlarge"></i>
-                        <h2 style="margin: 0;">Work Experience</h2>
-                    </div>
-                    <div class="w3-container" style="padding: 0;">
-                        <h5 class="w3-opacity"><b><span class="w3-tag w3-teal w3-round">Data Engineer
-                                </span> - Amazon </b>
-                        </h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>March 2022 -
-                            Present </h6>
-                        <p>
-                            <ul>
-                                <li>Designed and rolled out a high-performance pipeline linking Amazon S3 and workforce 
-                                    systems with AWS CDK (Python/TypeScript) and Step Functions, which cut retrieval time 
-                                    from 3 hours to under 5 minutes and gave HR real-time access to workforce insights.</li>
-                                <li>By integrating Airflow, DynamoDB, Redshift, and Text-Em-All API, automated daily roster 
-                                    audits at a scale of 10M+ records, sending multilingual alerts that shortened compliance 
-                                    resolution cycles by 60% across international teams</li>
-                                <li>A 1PB/day ETL framework using AWS Glue, PySpark, and S3 brought data from SQL Server and 
-                                    DynamoDB into Redshift, powering a metrics platform for 10K+ monthly users and removing 
-                                    15,000+ hours of manual reporting work each month.</li>
-                                <li>Introduced an attendance anomaly detection service with Python and Airflow DAGs, which 
-                                    automatically raised alerts, saving 5,260+ manual hours yearly and enabling HR to respond 
-                                    faster to staffing issues.</li>
-                                <li>HR leaders gained visibility through QuickSight dashboards tied to Redshift and S3; these 
-                                    visualizations highlighted roster completeness by site and supervisor, helping cut incomplete 
-                                    profile resolution times by 40%.</li>
-                                <li>For the MyVoice feedback platform, created a unified ETL process in AWS Glue and PySpark to combine 
-                                    CSV, JSON, and Redshift inputs, which sped up HR follow-ups by 35% with more precise sentiment analytics.</li>
-                                <li>Schema restructuring, optimized queries, and automated maintenance within Redshift led to a 45% 
-                                    drop in query runtimes and materially reduced recurring compute expenses across analytics workloads.</li>
-                                <li>Reliability improved when AWS EventBridge, Lambda, and CloudWatch were used to validate incoming events; 
-                                    this raised overall data quality from 88% to 98%, eliminating errors that previously impacted downstream systems.</li>
-                                <li>ETL throughput scaled further after tuning PySpark partitioning, job parallelism, and caching in 
-                                    AWS Glue, which cut large-volume job runtimes by 30% and increased the speed of workforce analytics delivery.</li>
-                                <!-- <li><b> Fluid –</b>Spearheaded the development of Fluid, a data-driven product
-                                    optimizing workforce management:</li>
-                                <div class="w3=container">
-                                    <li>Engineered a robust data pipeline integrating S3 and internal sources, reducing
-                                        data retrieval time from 3 hours to minutes.</li>
-                                    <li>Designed and implemented an efficient ETL process, enabling seamless data
-                                        visualization for the front-end team by utilizing AWS CDK
-                                        with Python and TypeScript to deploy and manage complex orchestration
-                                        infrastructure.</li>
-                                    <li>This Enhanced employee experience by facilitating streamlined internal transfers
-                                        and promotions across Amazon's global workforce.</li>
-                                    <li>Technologies – AWS CDK, Step function, Lambda, Glue, EC2, S3, EventBridge,
-                                        CloudWatch, Redshift, Athena, Git</li>
-                                </div>
-                                <li><b> Roster Audit Automation System –</b>Developed an automated system to verify
-                                    associate information completeness and essential permissions,
-                                    generating multilingual notifications for associates and supervisors to address
-                                    missing data and streamline onboarding processes</li>
-                                <div class="w3=container">
-                                    <li>Engineered an automated end-to-end process integrating multiple databases (S3,
-                                        DynamoDB, Redshift) and the text-em-all API,
-                                        orchestrated by Airflow, to process 10 million daily records and send
-                                        regionalized email notifications across Europe and North
-                                        America.</li>
-                                    <li>Engineered an interactive dashboard to identify and categorize individuals with
-                                        incomplete information by location, language,
-                                        supervisor, and site type, enabling HR associates to efficiently monitor and
-                                        manage roster compliance in real-time.</li>
-                                    <li>Technologies - Python, Redshift, S3, Git, Quicksight, SQL, Airflow, API’s</li>
-                                </div>
-                                <li><b> MyVoice: Employee Feedback System –</b>Supported the development of a
-                                    company-wide employee feedback tool by designing and
-                                    implementing data pipelines to provide crucial datasets, enabling warehouse
-                                    employees and HR to effectively voice and address concerns</li>
-                                <div class="w3=container">
-                                    <li>Engineered a comprehensive data pipeline using AWS Glue, integrating diverse
-                                        data sources including internal flat files (CSV, JSON),
-                                        S3 buckets, and Redshift databases to enable seamless data consolidation and
-                                        analysis.</li>
-                                    <li>Technologies - Python, PySpark, SQL, Redshift, S3, Glue, Cloudwatch, Lambda, Git
-                                    </li>
-                                </div>
-                                <li> <b> Data Warehouse Migration Project –</b>Engineered ETL jobs to migrate data from
-                                    diverse databases (SQL Server, S3, DynamoDB) into AWS
-                                    Redshift, utilizing AWS Glue, S3, CloudWatch, and Lake Formation to ensure efficient
-                                    and secure data transfer and storage</li>
-                                <li>Architected and implemented end-to-end data pipelines processing ~1 petabyte daily,
-                                    creating a metrics tool used by 10,000 monthly users
-                                    and resulting in savings of 15,000 hours per month.</li>
-                                <li>Maintaining and optimizing performance of AWS services (Redshift, Step Function,
-                                    Glue, Lambda) and internal ETL tool-based jobs to
-                                    ensure efficient and reliable data processing workflows.</li>
-                                <li>Led a two-person team in developing automated attendance tracking and alerting
-                                    services using Python and Airflow, resulting in annual
-                                    savings of approximately 5,260 manual hours.</li> -->
-                            </ul>
-                        </p>
-                        <hr>
-                    </div>
-                    <div class="w3-container">
-                        <h5 class="w3-opacity"><b><span class="w3-tag w3-teal w3-round">Data Engineer
-                                </span> - Root Insurance</b>
-                        </h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>March 2021 -
-                            January
-                            2022 </h6>
-                        <p>
-                            <ul>
-                                <li>Delivered a distributed AWS Redshift data warehouse with dimensional modeling, 
-                                    consolidating policy, claims, and telematics data into a single analytics source that 
-                                    accelerated enterprise reporting cycles.</li>
-                                <li>Automated ingestion of 6TB+ daily insurance data by orchestrating AWS Glue, Step Functions, 
-                                    and S3, enabling machine learning pipelines to update risk-based pricing in near real time.</li>
-                                <li>Integrated APIs, SQL Server, and CSV feeds into Redshift and Snowflake while embedding Python- 
-                                    and SQL-driven data validation, maintaining 99.9% dataset accuracy for downstream analytics.</li>
-                                <li>Reduced monthly infrastructure costs by $6K through migrating six high-volume workloads from SQL 
-                                    Server, DynamoDB, and S3 into Redshift with compression encodings and optimized distribution strategies.</li>
-                                <li>Equipped executives with 20+ Tableau dashboards that refreshed hourly from Redshift, providing timely 
-                                    insight into underwriting risk trends and claims performance metrics.</li>
-                                <li>Increased Redshift query throughput by 55% via schema redesign, sort/partition key adjustments, 
-                                    and Workload Management tuning, improving the responsiveness of operational dashboards.</li>
-                                <li>Improved fault tolerance and execution speed of EMR, Lambda, and Glue batch jobs by introducing 
-                                    retry mechanisms and resource optimizations, ensuring continuous insurance data processing.</li>
-                                <li>Produced enriched feature datasets in Snowflake and Redshift for the data science team, cutting 
-                                    model training preparation time from multiple days to under six hours for fraud detection and claims forecasting</li>
-                                <!-- <li> <b> Lifetime Value –</b> How much money can be expected to make from a customer
-                                    over their lifetime with Root. It is calculated using three Machine learning models
-                                    Conversion, Retention and Loss</li>
-                                <div class="w3=container">
-                                    <li> I and other Engineer have Created new pipeline for calculating loss along with
-                                        the help of Data Scientist. Cleaned and transformed the data according to the
-                                        Input requirements for the loss model and then made then available in S3 as
-                                        parquet files. Depending on the
-                                        date, specified predictions are calculated by the model and output is stored as
-                                        parquet files. Finally, I made the files available in
-                                        Database which will be later accumulated with other model outputs. Then these
-                                        tables serve as inputs for analysts to make future
-                                        decision. Until before the lossis calculated manually and was not accurate, now
-                                        it’s about 91% accurate in calculating loss which helped
-                                        in deciding the quotation amount for launching the product in new states.</li>
-                                </div>
-                                <li> Technologies – Redshift, Visual Studio Code, DBeaver, Terraform, GitHub, Step
-                                    Function, SageMaker, Glue, Athena, Ruby</li>
-                                <li> <b> On Leveling –</b> Calculating the premium for the latest version for all the
-                                    quotes. By doing this, Analysts can understand the quotation amounts changing across
-                                    different grains over course of time.</li>
-                                <div class="w3=container">
-                                    <li> Defined and created Glue Crawlers for tracking data from S3 to the Database
-                                        with a team of two Engineers. Based on the requirement sheets provided by Data
-                                        Analysts, Data is segregated for Driver, Vehicle and Policy level and these
-                                        tables are made available as data to
-                                        Tableau dashboards. Factors thus provided among different grain levels state,
-                                        version helped Analysts in deciding how much should be
-                                        collected as premium from individuals. After this approach, the binding
-                                        percentage has increased substantially by 25 percent.</li>
-                                </div>
-                                <li> Technologies – Visual Studio Code, Ruby, SQL, AWS Glue, S3</li>
-                                <li> Creating connectors in Fivetran, so that data from various sources can be accessed
-                                    in Redshift.</li>
-                                <li> Designing and Developing Architecture for Data warehouse.</li>
-                                <li> Making changes to AWS resources with Orchestration tool Terraform.</li>
-                                <li> Helping other teams regarding Data Warehouse during triage weeks.</li> -->
-                            </ul>
-                        </p>
-                        <hr>
-                    </div>
-                    <div class="w3-container">
-                        <h5 class="w3-opacity"><b><span class="w3-tag w3-teal w3-round">Data Engineer - Intern
-                                </span> - Indiana Business Research Center</b>
-                        </h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2020 - December
-                            2020 </h6>
-                        <p>
-                            <ul>
-                                <li>Developed a Microsoft SQL Server Master Data Management system with automated SSIS and 
-                                    Python ETL jobs, unifying pandemic-related data from multiple international health agencies 
-                                    for centralized reporting.</li>
-                                <li>Migrated terabytes of healthcare records into an Azure Data Lake with optimized partitioning, 
-                                    cutting query times by 40% while ensuring HIPAA compliance for sensitive patient information.</li>
-                                <li>Engineered distributed data workflows on Hadoop using Spark, Hive, Flink, Sqoop, Kafka, 
-                                    and HBase to process large-scale COVID-19 datasets, supporting real-time analytics for 
-                                    state researchers.</li>
-                                <li>Improved transformation efficiency by 35% through targeted optimization of HiveQL 
-                                    and Spark SQL scripts, enabling faster availability of daily case and demographic reports.</li>
-                                <li>Created Python- and R-based statistical models with interactive visualizations that informed 
-                                    public health policy decisions, highlighting infection trends and vulnerable population segments.</li>
-                            </ul>
-
-                        </p>
-                        <hr>
-                    </div>
-                    <!-- <div class="w3-container">
-                        <h5 class="w3-opacity"><b><span class="w3-tag w3-teal w3-round">Data Engineer
-                                </span> - Polis Center</b>
-                        </h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2020 - Jul 2020
-                        </h6>
-                        <p>
-                            <ul>
-                                <li>Modeled and Developed a MySQL-based Data Warehouse and created a python script to
-                                    get the data from NoSQL Database (MongoDB) based API service.</li>
-                                <li>SAS scripts are written to create datasets by applying transformations to do
-                                    statistical analysis.</li>
-                                <li>R programming-based scripts are written to get the data from API services and
-                                    aggregating them in one place. Gathered data is then analyzed for various Key
-                                    Performance Indicators of a business.</li>
-                                <li>Engaged in developing various machine learning algorithms such as linear
-                                    regression, Random Forests regression, K-means clustering, KNN classification,
-                                    and various other supervised learning algorithms using python libraries like
-                                    Pandas, NumPy, SciPy, NLTK, TensorFlow, Scikit-learn, PyTorch, and Keras.</li>
-                            </ul>
-                        </p>
-                        <hr>
-                    </div> -->
-                    <!-- <div class="w3-container">
-                        <h5 class="w3-opacity"><b><span class="w3-tag w3-teal w3-round">Graduate Assistant
-                                </span> - Indiana University</b>
-                        </h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Aug 2019 - Mar 2020
-                        </h6>
-                        <p>
-                            <ul>
-                                <li>Developed a website based which will facilitate students to enroll in the program
-                                    offered by the client as well as will provide help from start to end of their
-                                    program, there is also an admin dashboard where the client can see analytics based
-                                    on the data provided by the students (like discussions, grades). For developing this
-                                    website from scratch technologies such as CSS, PHP, Html, JavaScript, SQL, are used.
-                                </li>
-                                <li>Developed a web interface that runs on python as a scripting language to run a
-                                    machine learning algorithm in the backend using the Django framework.</li>
-                            </ul>
-                        </p>
-                        <hr>
-                    </div> -->
-                    <div class="w3-container">
-                        <h5 class="w3-opacity"><b><span class="w3-tag w3-teal w3-round">Data Engineer
-                                </span> - Tata Consultancy Services </b>
-                        </h5>
-                        <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Sep 2017 - Jul 2019
-                        </h6>
-                        <p>
-                            <ul>
-                                <li>Automated data ingestion processes by building Python-based SSIS jobs, reducing a 2+ hour manual workload to minutes.</li>
-                                <li>Delivered dynamic Power BI and Tableau dashboards pulling live metrics from SQL Server, cutting manual reporting by 80%.</li>
-                                <li>Leveraged PySpark with SparkML on Hadoop clusters to develop forecasting models, boosting demand planning accuracy by 20%.</li>
-                                <li>Engineered high-availability ETL pipelines on Databricks Delta Lake orchestrated via Apache Airflow with 99.9% uptime.</li>
-                                <li>Cut SQL Server query execution times by 60% through index tuning and partition strategies.</li>
-                                <li>Consolidated multiple data sources into a centralized SQL Server data mart, streamlining reporting across business units.</li>
-                                <li>Designed real-time drill-down dashboards, translating operational needs into scalable BI solutions.</li>
-                                <li>Introduced reusable Python modules for validation, improving dataset reliability by 25%.</li>
-                            </ul>
-                        </p>
-                    </div>
-                </div>
-
-                <div class="w3-container w3-card w3-white w3-margin-bottom card-professional" style="padding: 2rem;" id="education">
-                    <div class="section-header">
-                        <i class="fas fa-graduation-cap fa-fw w3-xxlarge"></i>
-                        <h2 style="margin: 0;">Education</h2>
-                    </div>
-                    <div class="w3-container" style="padding: 0;">
-                        <div style="margin-bottom: 1.5rem;">
-                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                                <h5 style="margin: 0;">Indiana University</h5>
-                                <p class="experience-date">GPA: 3.9</p>
-                            </div>
-                            <h6 class="experience-date"><i class="fa fa-calendar fa-fw w3-margin-right"></i>August 2019 - December 2020</h6>
-                            <p style="margin-top: 0.5rem;">Master's in Data Science</p>
-                        </div>
-                        <hr>
-
-                        <div>
-                            <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                                <h5 style="margin: 0;">Jawaharlal Nehru Technological University, Kakinada</h5>
-                                <p class="experience-date">GPA: 7.87</p>
-                            </div>
-                            <h6 class="experience-date"><i class="fa fa-calendar fa-fw w3-margin-right"></i>August 2013 - May 2017</h6>
-                            <p style="margin-top: 0.5rem;">Bachelor's Degree in Electronics and Communication Engineering</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="w3-container w3-card w3-white w3-margin-bottom card-professional" style="padding: 2rem;" id="projects">
-                    <div class="section-header">
-                        <i class="fa fa-folder-open fa-fw w3-xxlarge"></i>
-                        <h2 style="margin: 0;">Personal Projects</h2>
-                    </div>
-                    <div class="w3-container">
-                        <h5 class="w3-opacity"><b>Gender Classification and Age Estimation using CNN</b>
-                                <a href="https://github.com/SaiGanesh26/Gender-Classification-Age-Estimation" target="_blank" class="project-link">
-                                    <i class="fa fa-external-link"></i></a></h5>
-                        <p>
-                            <ul>
-                                <li>Developed a Deep Learning Model that used more than 5 GB of image dataset to predict
-                                    the person’s gender and age group and annotate over the image or live webcam feed or
-                                    recorded video.</li>
-                                <li>Worked on Deep Learning Libraries (TensorFlow, Keras), Graphical Processing Unit,
-                                    Computer Vision Library (OpenCV), and Jupyter Notebook for developing the model.</li>
-                            </ul>
-                        </p>
-                        <hr>
-                    </div>
-                    <div class="w3-container">
-                        <h5 class="w3-opacity"><b>Data Visualization of US Foreign Trade Statistics</b>&nbsp;<a
-                                href="/project2/" target="_blank" class="project-link"><i class="fa fa-external-link"></i></a></h5>
-                        <p>
-                            <ul>
-                                <li>Ingested and cleansed US Census trade datasets containing imports and exports across all states, ensuring consistency in commodity codes, units, and valuation metrics for downstream analytics.</li>
-                                <li>Designed interactive dashboards highlighting trade volumes, top commodities, and value trends (in millions of USD) across geographies, enabling granular insights for economic and policy research.</li>
-                                <li>Leveraged Python, Pandas, and advanced visualization libraries to implement drilldowns and time-series comparisons, accelerating trade pattern analysis for stakeholders.</li>
-                            </ul>
-                        </p>
-                        <hr>
-                    </div>
-                    <div class="w3-container">
-                        <h5 class="w3-opacity"><b>Object Detection and anonymizing</b>&nbsp;<a
-                                href="https://github.com/sailesh21/object_detection_anonymizing" target="_blank" class="project-link"><i class="fa fa-external-link"></i></a></h5>
-                        <!-- <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Oct 2020 - Dec
-                            2020</h6> -->
-                        <p>
-                            <ul>
-                                <li>Developed a custom-built Deep Convolutional Neural Network model to detect the
-                                    person wearing a cap and hiding the identity of only that unique person wearing a
-                                    cap. To read, process, and anonymize images Computer Vision Library (OpenCV) was
-                                    used.</li>
-                            </ul>
-                        </p>
-                        <hr>
-                    </div>
-                    <div class="w3-container">
-                        <h5 class="w3-opacity"><b>Predictive Analysis Using restaurant Zomato data</b>&nbsp;<a
-                                href="https://github.com/sailesh21/restaurant_rate_prediction" target="_blank" class="project-link"><i class="fa fa-external-link"></i></a></h5>
-                        <!-- <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2020 - Apr
-                            2020</h6> -->
-                        <p>
-                            <ul>
-                                <li>Processed and transformed 1GB+ of structured and unstructured restaurant data using Spark RDDs, Spark SQL, and feature engineering to derive optimal predictors for ratings and costs.</li>
-                                <li>Developed machine learning models in Python to estimate restaurant ratings based on cuisine type and cost parameters, improving prediction accuracy through hyperparameter tuning.</li>
-                                <li>Applied NLP-driven sentiment analysis on customer reviews, classifying opinions as positive or negative, thereby providing actionable insights for restaurant performance optimization.</li>
-                            </ul>
-                        </p>
-                        <hr>
-                    </div>
-                    <div class="w3-container">
-                        <h5 class="w3-opacity"><b>Dashboard of World population statistics</b>&nbsp;<a
-                                href="https://app.powerbi.com/view?r=eyJrIjoiNGI1OGZlZGUtZjBmOS00YzliLTkzOGItMjczMjhmYjZiYzQ0IiwidCI6IjExMTNiZTM0LWFlZDEtNGQwMC1hYjRiLWNkZDAyNTEwYmU5MSIsImMiOjN9&pageName=ReportSection9580f50fe94d70bce3e0"
-                                target="_blank" class="project-link"><i class="fa fa-external-link"></i></a></h5>
-                        <!-- <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2020 - Apr
-                            2020</h6> -->
-                        <p>
-                            <ul>
-                                <li>Consolidated global demographic datasets from multiple open data sources into a structured data warehouse using SQL for seamless integration and querying.</li>
-                                <li>Developed an interactive Tableau dashboard displaying population growth, density, and demographic distribution trends across continents and countries.</li>
-                                <li>Incorporated time-series analytics and calculated KPIs to track population changes over decades, enabling comparative insights between regions.</li>
-                            </ul>
-                        </p>
-
-                    </div>
-                </div>
-
-                <!--
-                <div class="w3-container w3-card w3-white" style="padding-top: 20px;" id="certificates">
-                    <h2 class="w3-text-grey w3-padding-16"><i
-                            class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Learning
-                        Certificates
-                    </h2>
-                    <div class="w3-text-black w3-container">
-                        <ul>
-                            <li>
-                                <h5 class="w3-opacity"><b>Introduction to SQL&nbsp;</b><a
-                                        href="https://www.datacamp.com/statement-of-accomplishment/course/865d4c71bb845769d7839a6a312bc005daf094a5"><i
-                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Object-Oriented Programming in Python&nbsp;</b></a><a
-                                        href="https://www.datacamp.com/statement-of-accomplishment/course/11454f55a002230a8bb530db6ba0e98e94864d3c"><i
-                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Introduction to Data Visualization with
-                                            Matplotlib&nbsp;</b></a><a
-                                        href="https://www.datacamp.com/statement-of-accomplishment/course/02d0d154c65233886d99ffe8d741ba2f5069042e"><i
-                                            class="material-icons" style="font-size:16px;color:teal">
-                                            &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Introduction to Shell&nbsp;</b></a><a
-                                        href="https://www.datacamp.com/statement-of-accomplishment/course/f42f41522fd2c027b54badcb19cedb6d5c92986d"><i
-                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Writing Efficient Python Code&nbsp;</b></a><a
-                                        href="https://www.datacamp.com/statement-of-accomplishment/course/777def732ef16794f7e000bde0bda3f94db64723"><i
-                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Data Science for Everyone&nbsp;</b></a><a
-                                        href="https://www.datacamp.com/statement-of-accomplishment/course/d41d30c7ea9b9fd0d0bc823b8ac6ea7942996b11"><i
-                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Introduction to Data Engineering&nbsp;</b></a><a
-                                        href="https://www.datacamp.com/statement-of-accomplishment/course/b24d881143662ee49ceec28cf075e8e9cd9b89ec"><i
-                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Joining Data in SQL&nbsp;</b></a><a
-                                        href="https://www.datacamp.com/statement-of-accomplishment/course/08e537b855df2717e39b8d7d881deffd4099ec9d"><i
-                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Streamlined Data Ingestion with pandas&nbsp;</b></a><a
-                                        href="https://www.datacamp.com/statement-of-accomplishment/course/b5b91618d89411c30a3f7ec46bdc348c48baeaa1"><i
-                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            Linkedin courses
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Data Science for Everyone&nbsp;</b></a><a href="/media/cerificates/Datascience for everyone_datacamp_completion
-                                        certificate.pdf" target="_blank" rel="noopener noreferrer"><i
-                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Deep Learning Face Recognition</b></a><a href="/media/cerificates/CertificateOfCompletion_Deep Learning_ Face
-                                        Recognition.pdf" target="_blank" rel="noopener noreferrer"><i
-                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Introduction to Deep Learning with OpenCV</b></a>
-                                    <a href="/media/cerificates/CertificateOfCompletion_Introduction to Deep Learning
-                                        with OpenCV.pdf" target="_blank" rel="noopener noreferrer"><i
-                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Essential Math for Machine Learning: Python</b></a></a>
-                                    <a href="/media/cerificates/CertificateOfCompletion_Essential Math for Machine
-                                        Learning_ Python Edition.pdf" target="_blank" rel="noopener noreferrer"><i
-                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>SQL Server integration Services</b></a></a>
-                                    <a href="/media/cerificates/CertificateOfCompletion_SQL Server Integration
-                                        Services.pdf" target="_blank" rel="noopener noreferrer"><i
-                                            class="material-icons" style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Learning Django</b></a></a>
-                                    <a href="/media/cerificates/CertificateOfCompletion_Learning Django.pdf"
-                                        target="_blank" rel="noopener noreferrer"><i class="material-icons"
-                                            style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Learning Vue.js</b></a></a>
-                                    <a href="/media/cerificates/CertificateOfCompletion_Learning Vue Js 3.pdf"
-                                        target="_blank" rel="noopener noreferrer"><i class="material-icons"
-                                            style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Learning Microsoft Power BI Desktop</b></a></a>
-                                    <a href="/media/cerificates/CertificateOfCompletion_Learning Microsoft Power Bi Desktop 2.pdf"
-                                        target="_blank" rel="noopener noreferrer"><i class="material-icons"
-                                            style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Learning Microsoft SQL Server 2019</b></a></a>
-                                    <a href="/media/cerificates/CertificateOfCompletion_Learning Microsoft SQL Server 2019.pdf"
-                                        target="_blank" rel="noopener noreferrer"><i class="material-icons"
-                                            style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Introduction to Spark SQL and DataFrames</b></a></a>
-                                    <a href="/media/cerificates/CertificateOfCompletion_Introduction to Spark SQL and DataFrames.pdf"
-                                        target="_blank" rel="noopener noreferrer"><i class="material-icons"
-                                            style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Elasticsearch Essential Training</b></a></a>
-                                    <a href="/media/cerificates/CertificateOfCompletion_Elasticsearch Essential Training.pdf"
-                                        target="_blank" rel="noopener noreferrer"><i class="material-icons"
-                                            style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Apache Spark Essential Training</b></a></a>
-                                    <a href="/media/cerificates/CertificateOfCompletion_Apache Spark Essential Training.pdf"
-                                        target="_blank" rel="noopener noreferrer"><i class="material-icons"
-                                            style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Excel 2019 Essential Training</b></a></a>
-                                    <a href="/media/cerificates/CertificateOfCompletion_Excel 2019 Essential Training.pdf"
-                                        target="_blank" rel="noopener noreferrer"><i class="material-icons"
-                                            style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                            <li>
-                                <h5 class="w3-opacity"><a><b>Learning Excel 2019</b></a></a>
-                                    <a href="/media/cerificates/CertificateOfCompletion_Learning Excel 2019.pdf"
-                                        target="_blank" rel="noopener noreferrer"><i class="material-icons"
-                                            style="font-size:16px;color:teal"> &#xe8f4;</i></a>
-                                </h5>
-                            </li>
-                        </ul>
-                        <br>
-
-
-                    </div>
-
-                </div>
-            -->
-
-                <!-- End Right Column -->
-            </div>
-
-            <!-- End Grid -->
+        <div class="hero-copy">
+          <p class="eyebrow">Austin, TX</p>
+          <h1>Senior Data Engineer building scalable cloud data platforms that move fast and hold up under real load</h1>
+          <p class="hero-text">
+            Senior Data Engineer with 6+ years of experience designing and optimizing large-scale, high-availability
+            data platforms across AWS and Azure. I build real-time streaming pipelines, ETL/ELT frameworks, governed
+            data lakes, and analytics systems that cut latency from hours to minutes.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="./media/RESUME_sailesh_vemula.pdf" target="_blank" rel="noreferrer">View Resume</a>
+            <a class="button button-secondary" href="mailto:vlvsailesh21@gmail.com">Email Me</a>
+          </div>
         </div>
 
-        <!-- End Page Container -->
-    </div>
+        <aside class="hero-panel">
+          <article class="stat-card">
+            <span class="stat-value">10M+</span>
+            <span class="stat-label">records audited daily</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-value">1TB/day</span>
+            <span class="stat-label">ETL framework at Amazon</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-value">6TB+</span>
+            <span class="stat-label">insurance data ingested daily</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-value">10PB+</span>
+            <span class="stat-label">Size Database Handled</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-value">$25K+</span>
+            <span class="stat-label">monthly infrastructure savings</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-value">55%</span>
+            <span class="stat-label">query throughput improvement</span>
+          </article>
+          <article class="stat-card">
+            <span class="stat-value">20+</span>
+            <span class="stat-label">executive dashboards delivered</span>
+          </article>
+        </aside>
+      </section>
 
-    <footer class="w3-container w3-teal w3-center w3-margin-top" id="contact">
-        <p>Find me on social media.</p>
-        <a href="https://www.facebook.com/saileshthegreat/" target="_blank"> <i
-                class="fa fa-facebook-official fa-2x w3-hover-opacity" style="margin-right: 20px;"></i></a>
-        <a href="https://www.instagram.com/sailesh_vemula/" target="_blank"><i
-                class="fa fa-instagram fa-2x w3-hover-opacity" style="margin-right: 20px;"></i></a>
-        <a href="https://twitter.com/SaileshVemula" target="_blank"><i class="fa fa-twitter fa-2x w3-hover-opacity"
-                style="margin-right: 20px;"></i></a>
-        <a href="https://www.linkedin.com/in/sailesh-vemula/" target="_blank"><i
-                class="fa fa-linkedin fa-2x w3-hover-opacity" style="margin-right: 20px;"></i></a>
-        <a href="https://github.com/sailesh21" target="_blank"><i class="fa fa-github fa-2x w3-hover-opacity"
-                style="margin-right: 20px;"></i></a>
+      <section class="section" id="summary">
+        <div class="section-heading">
+          <p class="eyebrow">Professional Summary</p>
+          <h2>Cloud-native data engineering with measurable business impact.</h2>
+        </div>
+        <div class="summary-grid">
+          <article class="panel">
+            <p>
+              Expert in building real-time streaming pipelines and ETL/ELT frameworks using PySpark, SQL, Flink,
+              AWS Glue, and Redshift, handling multi-terabyte daily workloads.
+            </p>
+          </article>
+          <article class="panel">
+            <p>
+              Strong track record in data modeling, Iceberg and Delta Lake management, and query optimization with
+              cost-efficient architectures that reduce processing latency from hours to minutes.
+            </p>
+          </article>
+          <article class="panel">
+            <p>
+              Comfortable across DataOps, CI/CD, cloud-native architecture, predictive analytics, machine learning,
+              and BI reporting in governed, secure, and scalable ecosystems.
+            </p>
+          </article>
+        </div>
+      </section>
 
-        </br>
-        </br>
-    </footer>
+      <section class="section" id="skills">
+        <div class="section-heading">
+          <p class="eyebrow">Technical Skills</p>
+          <h2>Tools and platforms used across large-scale data systems.</h2>
+        </div>
+        <div class="skills-grid">
+          <article class="panel skill-block">
+            <h3>Programming</h3>
+            <p>Python (Pandas, NumPy, PySpark, Scrapy), SQL, PL/SQL, Scala, TypeScript, Bash</p>
+          </article>
+          <article class="panel skill-block">
+            <h3>Databases and Warehousing</h3>
+            <p>Snowflake, Redshift, DynamoDB, PostgreSQL, SQL Server, MySQL, MongoDB, StarRocks, Athena, RDS</p>
+          </article>
+          <article class="panel skill-block">
+            <h3>Big Data and Streaming</h3>
+            <p>Apache Spark, Iceberg, Hadoop, Apache Kafka, Apache Flink, Kinesis, Amazon MSK</p>
+          </article>
+          <article class="panel skill-block">
+            <h3>Cloud and Orchestration</h3>
+            <p>AWS, Azure Data Lake, Terraform, Docker, Kubernetes, Airflow, Step Functions, SSIS</p>
+          </article>
+          <article class="panel skill-block">
+            <h3>Visualization and Monitoring</h3>
+            <p>QuickSight, Tableau, Power BI, SSRS, Prometheus, CloudWatch</p>
+          </article>
+          <article class="panel skill-block">
+            <h3>DataOps</h3>
+            <p>CI/CD, GitHub, Git, AWS CodePipeline, Agile, Waterfall, SDLC</p>
+          </article>
+        </div>
+      </section>
 
+      <section class="section" id="experience">
+        <div class="section-heading">
+          <p class="eyebrow">Experience</p>
+          <h2>Roles where data engineering translated into operational and business outcomes.</h2>
+        </div>
 
+        <div class="experience-stack">
+          <article class="experience-card">
+            <div class="role-header">
+              <div class="role-left role-top">
+                <p class="role-meta">Amazon</p>
+              </div>
+              <div class="role-right role-top">
+                <p class="role-dates">Mar 2022 - Present</p>
+              </div>
+              <div class="role-left role-bottom">
+                <h3>Data Engineer II</h3>
+              </div>
+              <div class="role-right role-bottom">
+                <p class="role-location">Austin, TX</p>
+              </div>
+            </div>
+            <ul>
+              <li>Automated roster audits on 10M+ records daily using Airflow, DynamoDB, Redshift, SNS, SQS, and APIs, reducing compliance resolution time by 60%.</li>
+              <li>Built a 1TB/day ETL framework with AWS Glue, PySpark, and S3 that powered a metrics platform for 10K+ monthly users and removed 15,000+ hours of manual reporting each month.</li>
+              <li>Introduced an attendance anomaly detection service with Python and Airflow DAGs that saved 5,260+ manual hours yearly.</li>
+              <li>Designed AWS Glue and PySpark pipelines to prepare knowledge bases for context-based RAG models across enterprise reporting data.</li>
+              <li>Raised data quality from 68% to 98% using EventBridge, Lambda, and CloudWatch validation flows and built QuickSight leadership dashboards.</li>
+              <li>Cut large-volume job runtimes by 30% through query tuning, PySpark partitioning, caching, and parallelism optimization in AWS Glue and Redshift.</li>
+            </ul>
+          </article>
+
+          <article class="experience-card">
+            <div class="role-header">
+              <div class="role-left role-top">
+                <p class="role-meta">Root Insurance</p>
+              </div>
+              <div class="role-right role-top">
+                <p class="role-dates">Jun 2021 - Mar 2022</p>
+              </div>
+              <div class="role-left role-bottom">
+                <h3>Data Engineer</h3>
+              </div>
+              <div class="role-right role-bottom">
+                <p class="role-location">Austin, TX</p>
+              </div>
+            </div>
+            <ul>
+              <li>Delivered a distributed AWS Redshift warehouse with dimensional modeling for policy, claims, and telematics analytics.</li>
+              <li>Automated ingestion of 6TB+ daily insurance data with AWS Glue, Step Functions, and S3 for near real-time risk pricing pipelines.</li>
+              <li>Integrated APIs, SQL Server, and CSV feeds into Redshift and Snowflake while maintaining 99.9% dataset accuracy through Python and SQL validation.</li>
+              <li>Reduced monthly infrastructure costs by $6K through migration of six high-volume workloads into Redshift with optimized distribution strategies.</li>
+              <li>Built 20+ Tableau dashboards refreshing hourly from Redshift for underwriting risk and claims performance insights.</li>
+              <li>Increased Redshift query throughput by 55% through schema redesign, sort key strategy, partitioning, and WLM tuning.</li>
+            </ul>
+          </article>
+
+          <article class="experience-card">
+            <div class="role-header">
+              <div class="role-left role-top">
+                <p class="role-meta">Indiana Business Research Center</p>
+              </div>
+              <div class="role-right role-top">
+                <p class="role-dates">Jan 2020 - Dec 2020</p>
+              </div>
+              <div class="role-left role-bottom">
+                <h3>Data Engineer Intern</h3>
+              </div>
+              <div class="role-right role-bottom">
+                <p class="role-location">Indianapolis, IN</p>
+              </div>
+            </div>
+            <ul>
+              <li>Developed a Microsoft SQL Server master data management system with automated SSIS and Python ETL jobs for pandemic-related reporting.</li>
+              <li>Migrated terabytes of healthcare records into Azure Data Lake with optimized partitioning, cutting query times by 40% while supporting HIPAA compliance.</li>
+            </ul>
+          </article>
+
+          <article class="experience-card">
+            <div class="role-header">
+              <div class="role-left role-top">
+                <p class="role-meta">Tata Consultancy Services</p>
+              </div>
+              <div class="role-right role-top">
+                <p class="role-dates">Sep 2017 - Jul 2019</p>
+              </div>
+              <div class="role-left role-bottom">
+                <h3>Data Engineer</h3>
+              </div>
+              <div class="role-right role-bottom">
+                <p class="role-location">Hyderabad, India</p>
+              </div>
+            </div>
+            <ul>
+              <li>Automated Python-based SSIS ingestion jobs, reducing 2+ hour manual workloads to minutes and improving dashboard freshness.</li>
+              <li>Cut SQL Server query execution times by 60% through tuning indexes, stored procedures, and partition strategies.</li>
+              <li>Consolidated flat files, APIs, and relational systems into a centralized SQL Server data mart for cross-business reporting.</li>
+              <li>Introduced reusable Python validation and transformation modules, improving dataset reliability by 25%.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-heading">
+          <p class="eyebrow">Projects</p>
+          <h2>Selected work across analytics, machine learning, and interactive reporting.</h2>
+        </div>
+        <div class="projects-grid">
+          <article class="panel project-card">
+            <h3>Data Visualization of US Foreign Trade Statistics</h3>
+            <p class="project-link">
+              <a href="https://sailesh21.github.io/project2/" target="_blank" rel="noreferrer">View Project</a>
+            </p>
+            <ul>
+              <li>Ingested and standardized US Census trade datasets across all states for downstream analytics and economic research.</li>
+              <li>Built Python and Pandas dashboards to visualize trade volumes, top commodities, geography-based drilldowns, and time-series trends.</li>
+            </ul>
+          </article>
+          <article class="panel project-card">
+            <h3>Predictive Analysis on Zomato Restaurant Data Using Machine Learning</h3>
+            <p class="project-link">
+              <a href="https://github.com/sailesh21/restaurant_rate_prediction" target="_blank" rel="noreferrer">View Project</a>
+            </p>
+            <ul>
+              <li>Processed 1GB+ of restaurant data with Spark RDDs and Spark SQL and engineered features for rating and cost prediction.</li>
+              <li>Built TensorFlow models with hyperparameter tuning and applied NLP sentiment analysis on SageMaker with GPU acceleration.</li>
+            </ul>
+          </article>
+          <article class="panel project-card">
+            <h3>Dashboard for World Population Statistics</h3>
+            <p class="project-link">
+              <a href="https://app.powerbi.com/view?r=eyJrIjoiNGI1OGZlZGUtZjBmOS00YzliLTkzOGItMjczMjhmYjZiYzQ0IiwidCI6IjExMTNiZTM0LWFlZDEtNGQwMC1hYjRiLWNkZDAyNTEwYmU5MSIsImMiOjN9&pageName=ReportSection9580f50fe94d70bce3e0" target="_blank" rel="noreferrer">View Project</a>
+            </p>
+            <ul>
+              <li>Consolidated global demographic datasets into a structured SQL warehouse and developed an interactive Tableau dashboard.</li>
+              <li>Added time-series analytics and KPI tracking to compare population changes across decades, countries, and regions.</li>
+            </ul>
+          </article>
+          <article class="panel project-card">
+            <h3>Gender Classification and Age Estimation Using CNN</h3>
+            <p class="project-link">
+              <a href="https://github.com/SaiGanesh26/Gender-Classification-Age-Estimation" target="_blank" rel="noreferrer">View Project</a>
+            </p>
+            <ul>
+              <li>Developed a deep learning model trained on 5GB+ of image data to predict gender and age group and annotate outputs on images, live webcam feeds, and recorded video.</li>
+              <li>Built the solution using TensorFlow, Keras, OpenCV, GPU-based training, and Jupyter Notebook workflows.</li>
+            </ul>
+          </article>
+          <article class="panel project-card">
+            <h3>Object Detection and Anonymizing</h3>
+            <p class="project-link">
+              <a href="https://github.com/sailesh21/object_detection_anonymizing" target="_blank" rel="noreferrer">View Project</a>
+            </p>
+            <ul>
+              <li>Developed a custom deep convolutional neural network to detect a person wearing a cap and selectively anonymize only that identified person.</li>
+              <li>Used OpenCV to read, process, detect, and anonymize images through a computer vision pipeline.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="education">
+        <div class="section-heading">
+          <p class="eyebrow">Education</p>
+          <h2>Academic foundation in data science and engineering.</h2>
+        </div>
+        <div class="education-grid">
+          <article class="panel education-card">
+            <div class="edu-top">
+              <h3>MS in Applied Data Science</h3>
+              <span>Aug 2019 - Dec 2020</span>
+            </div>
+            <p>Indiana University Purdue University, Indianapolis</p>
+            <p class="edu-grade">GPA: 3.9</p>
+          </article>
+          <article class="panel education-card">
+            <div class="edu-top">
+              <h3>Bachelor of Technology in Electronics and Communication</h3>
+              <span>Aug 2013 - May 2017</span>
+            </div>
+            <p>Jawaharlal Nehru Technological University, Kakinada, AP</p>
+            <p class="edu-grade">GPA: 7.87</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="section-heading">
+          <p class="eyebrow">Contact</p>
+          <h2>Let's connect for data engineering, analytics, and platform opportunities.</h2>
+        </div>
+        <div class="contact-grid">
+          <article class="contact-banner">
+            <div>
+              <h3>Reach out directly</h3>
+              <p>
+                I'm based in Austin, Texas and open to conversations around senior data engineering, cloud data
+                platforms, analytics engineering, and scalable ETL systems.
+              </p>
+            </div>
+            <div class="contact-actions">
+              <a class="button button-primary" href="mailto:vlvsailesh21@gmail.com">Email Me</a>
+              <a class="button button-secondary" href="./media/RESUME_sailesh_vemula.pdf" download>Download Resume</a>
+            </div>
+          </article>
+
+          <article class="panel contact-card">
+            <h3>Contact Details</h3>
+            <ul class="contact-list">
+              <li><strong>Location:</strong> Austin, TX</li>
+              <li><strong>Phone:</strong> <a href="tel:+13173714658">+1 (317) 371-4658</a></li>
+              <li><strong>Email:</strong> <a href="mailto:vlvsailesh21@gmail.com">vlvsailesh21@gmail.com</a></li>
+              <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/sailesh-vemula?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BFRhXViO9SUG1UcZjgDdMYA%3D%3D" target="_blank" rel="noreferrer">sailesh-vemula</a></li>
+              <li><strong>Portfolio:</strong> <a href="https://sailesh21.github.io/" target="_blank" rel="noreferrer">sailesh21.github.io</a></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
 </body>
-
 </html>
